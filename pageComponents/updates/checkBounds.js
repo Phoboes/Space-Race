@@ -10,7 +10,7 @@ const checkBounds = {
         handler.boundaryCheck(p.aliens);
 
         // Todo: move this behaviour
-        if (p.levelCounter >= 8 && p.enemies.update !== null) {
+        if (p.gameState.level >= 8 && p.enemies.update !== null) {
           // If we're above level eight, seekers are introduced; this makes the alien chase the player and adjusts the enemy angle to face the player
           for (let i = 0; i < p.aliens.children.entries.length; i++) {
             const alien = p.aliens.children.entries[i];

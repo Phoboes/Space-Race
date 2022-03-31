@@ -55,13 +55,13 @@ const index = (props) => {
   return (
     <div
       className={`${styles.contentWrapper} ${
-        styles["level-" + gameState.levelCounter]
+        styles["level-" + gameState.gameState.level]
       }`}
       id="container"
     >
       {content}
       <div className={styles.textWrapper}>
-        <span>Score: {gameState.playerState.score}</span>
+        {/* <span>Score: {gameState.playerState.score}</span> */}
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
 import p from "../../globalVars";
+import livesAndScore from "../../render/livesAndScore";
 
 const collision = {
   enable: () => {
@@ -21,16 +22,20 @@ const collision = {
     const hitAudio = p.game.sound.add(p.audio.enemyHit);
     hitAudio.play();
 
-    //  Increase the score
+    //  Increase the score,
     const playerState = {
       ...p.playerState,
       score: (p.playerState.score += 20),
       totalKillCount: p.playerState.totalKillCount++,
     };
+    // update react states,
     p.updateReactState({
       ...p,
       playerState,
     });
+    // and update the phaser text for scores/lives
+    livesAndScore.update();
+    livesAndScore.update();
 
     //  And create an explosion
     collision.explosion.create(alien);
@@ -43,27 +48,32 @@ const collision = {
     create: (target) => {
       const { x, y } = target;
       // If the explosion group hasn't been created for this level, do so
-      if (collision.explosion.sprite === null) {
-        collision.explosion.sprite = p.game.physics.add.sprite({
-          x: -100,
-          y: -100,
-        });
-        // And hide it offscreen until needed
-        collision.explosion.sprite.setVisible(false);
-      }
+      // if (collision.explosion.sprite === null) {
+      console.log("No explosion yet");
+      collision.explosion.sprite = p.game.physics.add.sprite({
+        x: -100,
+        y: -100,
+      });
+      // And hide it offscreen until needed
+      collision.explosion.sprite.setVisible(false);
+      // }
 
       // If the animation hasn't been created, create it; prevents duplicate creations
-      if (collision.explosion.animation === null) {
-        collision.explosion.animation = p.game.anims.create({
-          key: "kaboom",
-          frames: p.game.anims.generateFrameNumbers("kaboom", {
-            start: 0,
-            end: 15,
-          }),
-          frameRate: 25,
-          repeat: 0,
-        });
-      }
+      // if (collision.explosion.animation === null) {
+      console.log("no animation");
+      collision.explosion.animation = p.game.anims.create({
+        key: "kaboom",
+        frames: p.game.anims.generateFrameNumbers("kaboom", {
+          start: 0,
+          end: 15,
+        }),
+        frameRate: 25,
+        repeat: 0,
+      });
+      // }
+
+      console.log("Animations exist");
+      console.log(collision.explosion);
 
       //  Place the explosion, play the animation, hide it again.
       collision.explosion.sprite.setPosition(x, y);

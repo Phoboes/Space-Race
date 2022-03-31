@@ -62,7 +62,7 @@ export default function preload() {
   );
   this.load.image("levelSixAsteroidSmall", "levels/LevelSix/asteroidSmall.png");
   this.load.image("levelSixBullet", "levels/LevelSix/bullet2.png");
-  this.load.image("shiplevel6", "levels/LevelSix/ship.png");
+  this.load.image("shipLevel6", "levels/LevelSix/ship.png");
   this.load.spritesheet("levelSixKaboom", "levels/LevelSix/explodeWhite.png", {
     frameWidth: 128,
     frameHeight: 128,
@@ -196,8 +196,8 @@ export default function preload() {
     "levelEightSeeker",
     "levels/LevelEight/enemySeeker2.png",
     {
-      frameHeight: 34,
-      frameWidth: 28,
+      frameHeight: 37,
+      frameWidth: 37,
     }
   );
   this.load.spritesheet("levelEightBullet", "levels/LevelEight/bullet.png", {

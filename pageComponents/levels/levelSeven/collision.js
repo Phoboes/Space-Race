@@ -1,5 +1,7 @@
 import p from "../../globalVars";
 import utils from "../../utilityFunctions";
+import enemy from "./enemies";
+import livesAndScore from "../../render/livesAndScore";
 
 const collision = {
   enable: () => {
@@ -7,6 +9,7 @@ const collision = {
     p.alienState.collisionHandler.collideCallback =
       collision.playerShotAlienHandler;
 
+    // New explosion; new collison
     p.alienState.collisionHandler = p.game.physics.add.overlap(
       p.aliens,
       p.bullets,
@@ -14,19 +17,36 @@ const collision = {
       null,
       p.game
     );
+
+    // Adds collision detection between player and aliens.
+    p.game.physics.add.overlap(
+      p.aliens,
+      p.player,
+      collision.playerAlienCollisionHandler,
+      null,
+      p.game
+    );
   },
+  playerAlienCollisionHandler: (player, alien) => {
+    //  When an alien hits the player, kill it, take a player life away, render an explosion
+    collision.explosion.create(alien);
+    alien.destroy();
 
-  // playerAlienCollisionHandler: (player, alien) => {
-  //   //  When an alien hits the player, kill it and take a life
-  //   alien.destroy();
-  //   p.playerState.lives--;
+    // remove a life from the player
+    if (p.playerState.lives > 0) {
+      p.playerState.lives--;
+    }
 
-  //   //AUDIO enemy is hit by bullet
-  //   const hitAudio = p.game.sound.add("enemyHit");
-  //   hitAudio.play();
-  //   //  And create an explosion
-  //   collision.explosion.create(player);
-  // },
+    // Update the react state and the phaser text up the top of the screen
+    p.updateReactState({
+      ...p,
+    });
+    livesAndScore.update();
+
+    // Play an explosion sound
+    const hitAudio = p.game.sound.add(p.audio.enemyHit);
+    hitAudio.play();
+  },
 
   playerShotAlienHandler: (alien, bullet) => {
     const { x, y } = alien;
@@ -36,38 +56,47 @@ const collision = {
     alien.destroy();
 
     // If it's a large asteroid, generate some fragments
-    if (alien.texture.key === "levelSixAsteroidLarge") {
-      // Rather than a fixed velocity, these children take the velocity angle from the parent asteroid
-      // With that velocity they branch out from it randomly between -40 and 40 degrees and set their velocities to that angle
-      const firstChildAsteroid = p.aliens.create(x, y, "levelSixAsteroidSmall");
-      const firstChildVx = velocity.x + utils.random(-40, 40);
-      const firstChildVy = velocity.y + utils.random(-40, 40);
-      firstChildAsteroid.setVelocity(firstChildVx, firstChildVy);
-
-      const secondChildAsteroid = p.aliens.create(
-        x,
+    // If it's a large asteroid, generate some fragments
+    if (alien.texture.key === "levelSevenAsteroidLarge") {
+      // Create 2 children that split left and right from the parent
+      enemy.create({
+        game: p.game,
+        x: x - 10,
         y,
-        "levelSixAsteroidSmall"
-      );
-      const secondChildVx = velocity.x + utils.random(-40, 40);
-      const secondChildVy = velocity.y + utils.random(-40, 40);
-      secondChildAsteroid.setVelocity(secondChildVx, secondChildVy);
+        vx: utils.random(-60, 60),
+        vy: utils.random(-60, 60),
+        key: "levelSevenAsteroidSmall",
+        frames: "levelSevenAsteroidsSmall",
+      });
+
+      enemy.create({
+        game: p.game,
+        x: x + 10,
+        y,
+        vx: utils.random(-60, 60),
+        vy: utils.random(-60, 60),
+        key: "levelSevenAsteroidSmall",
+        frames: "levelSevenAsteroidsSmall",
+      });
     }
 
     //AUDIO enemy is hit by bullet
-    const hitAudio = p.game.sound.add("enemyHit");
+    const hitAudio = p.game.sound.add(p.audio.enemyHit);
     hitAudio.play();
 
-    //  Increase the score
+    //  Increase the score,
     const playerState = {
       ...p.playerState,
       score: (p.playerState.score += 20),
       totalKillCount: p.playerState.totalKillCount++,
     };
+    // update react states,
     p.updateReactState({
       ...p,
       playerState,
     });
+    // and update the phaser text for scores/lives
+    livesAndScore.update();
 
     //  And create an explosion
     collision.explosion.create(alien);
@@ -77,41 +106,109 @@ const collision = {
     // Create an explosion model and replay it on request
     // -------------------------------------------------------
 
-    create: (target) => {
-      const { x, y } = target;
-      // If the explosion group hasn't been created for this level, do so
-      if (collision.explosion.sprite === null) {
-        collision.explosion.sprite = p.game.physics.add.sprite({
-          x: -100,
-          y: -100,
-        });
-        // And hide it offscreen until needed
-        collision.explosion.sprite.setVisible(false);
+    create: (alien) => {
+      // Set the explosion type based on the size and colour of the enemy
+      if (alien.texture.key === "levelSevenAsteroidLarge") {
+        collision.explosion.render(alien, "Large");
+      } else if (alien.texture.key === "levelSevenAsteroidsSmall") {
+        collision.explosion.render(alien, "Small");
+      } else {
+        collision.explosion.render(alien, "Medium");
       }
+    },
 
-      // If the animation hasn't been created, create it; prevents duplicate creations
-      if (collision.explosion.animation === null) {
-        collision.explosion.animation = p.game.anims.create({
-          key: "levelSixKaboom",
-          frames: p.game.anims.generateFrameNumbers("levelSixKaboom", {
-            start: 0,
-            end: 15,
-          }),
+    render: (alien, size) => {
+      const { x, y } = alien;
+
+      // Explosion animation -- loaded offscreen and invisible
+      const explosion = p.game.physics.add.sprite(-100, -100);
+
+      explosion.setPosition(x, y);
+      const explosionAnimationKey = collision.explosion.getExplosionType(
+        alien.frame.name,
+        size
+      );
+      explosion.play(explosionAnimationKey.key);
+      explosion.body.allowGravity = false;
+    },
+    getExplosionType: (asteroidId, size) => {
+      // The ID is generated randomly when the alien is spawned -- it's the frame on which the sprite is frozen and determines the asteroid colour and is used to determine the explosion colour.
+
+      let explosionKey = null;
+      if (asteroidId === 0) {
+        // Yellow explosion
+        explosionKey = p.game.anims.create({
+          key: `levelSeven${size}AsteroidExplosionYellow`,
+          frames: p.game.anims.generateFrameNumbers(
+            `levelSeven${size}AsteroidExplosionYellow`,
+            {
+              start: 0,
+              end: 15,
+            }
+          ),
+          frameRate: 25,
+          repeat: 0,
+        });
+      } else if (asteroidId === 1) {
+        // Red explosion
+        explosionKey = p.game.anims.create({
+          key: `levelSeven${size}AsteroidExplosionRed`,
+          frames: p.game.anims.generateFrameNumbers(
+            `levelSeven${size}AsteroidExplosionRed`,
+            {
+              start: 0,
+              end: 15,
+            }
+          ),
+          frameRate: 25,
+          repeat: 0,
+        });
+      } else if (asteroidId === 2) {
+        // Green explosion
+        explosionKey = p.game.anims.create({
+          key: `levelSeven${size}AsteroidExplosionGreen`,
+          frames: p.game.anims.generateFrameNumbers(
+            `levelSeven${size}AsteroidExplosionGreen`,
+            {
+              start: 0,
+              end: 15,
+            }
+          ),
+          frameRate: 25,
+          repeat: 0,
+        });
+      } else if (asteroidId === 3) {
+        // Purple explosion
+        explosionKey = p.game.anims.create({
+          key: `levelSeven${size}AsteroidExplosionPurple`,
+          frames: p.game.anims.generateFrameNumbers(
+            `levelSeven${size}AsteroidExplosionPurple`,
+            {
+              start: 0,
+              end: 15,
+            }
+          ),
+          frameRate: 25,
+          repeat: 0,
+        });
+      } else if (asteroidId === 4) {
+        // Cyan explosion
+        explosionKey = p.game.anims.create({
+          key: `levelSeven${size}AsteroidExplosionCyan`,
+          frames: p.game.anims.generateFrameNumbers(
+            `levelSeven${size}AsteroidExplosionCyan`,
+            {
+              start: 0,
+              end: 15,
+            }
+          ),
           frameRate: 25,
           repeat: 0,
         });
       }
-
-      //  Place the explosion, play the animation, hide it again.
-      collision.explosion.sprite.setPosition(x, y);
-      collision.explosion.sprite.setVisible(true);
-      collision.explosion.sprite.play("levelSixKaboom");
-      //   Once the animation finishes, remove it from the scene
-      collision.explosion.sprite.on("animationcomplete", () => {
-        collision.explosion.sprite.setVisible(false);
-      });
-      collision.explosion.sprite.body.allowGravity = false;
+      return explosionKey;
     },
+
     sprite: null,
     animation: null,
   },

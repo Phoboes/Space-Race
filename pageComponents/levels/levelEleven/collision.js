@@ -1,39 +1,71 @@
 import p from "../../globalVars";
 import bullets from "../levelTen/bullets";
+import livesAndScore from "../../render/livesAndScore";
 
 const collision = {
+  enable: () => {
+    // Phaser gets iffy about overwriting physics, so we have to force its hand here
+    p.alienState.collisionHandler.collideCallback =
+      collision.playerShotAlienHandler;
+
+    // Adds collision detection between bullets and aliens.
+    p.alienState.collisionHandler = p.game.physics.add.overlap(
+      p.aliens,
+      p.bullets,
+      collision.enemy.playerBulletCollisionHandler,
+      null,
+      p.game
+    );
+
+    // Adds collision detection between player and aliens.
+    p.game.physics.add.overlap(
+      p.aliens,
+      p.player,
+      collision.player.alienCollisionHandler,
+      null,
+      p.game
+    );
+  },
   player: {
     // -------------------------------------------------------
     // Collisions with any 'alien' type
     // -------------------------------------------------------
 
     alienCollisionHandler: function (player, alien) {
-      p.totalKillCount += 1;
-      // The alien explodes and takes a life.
-      alien.destroy();
-      p.lives -= 1;
-      p.totalKillCount++;
-
-      //AUDIO enemy is hit by player
-
-      const hitAudio = this.sound.add("enemyHit");
-      hitAudio.play();
-
-      //  Increase the score
-      p.score += 20;
-
-      //  And create an explosion
+      //  When an alien hits the player, kill it, take a player life away, render an explosion
       collision.explosion.create(alien);
+      alien.destroy();
+
+      // remove a life from the player
+      if (p.playerState.lives > 0) {
+        p.playerState.lives--;
+      }
+
+      // Update the react state and the phaser text up the top of the screen
+      p.updateReactState({
+        ...p,
+      });
+      livesAndScore.update();
+
+      // Play an explosion sound
+      const hitAudio = p.game.sound.add(p.audio.enemyHit);
+      hitAudio.play();
     },
     // -------------------------------------------------------
     // Collisions with projectiles shot by 'Shooter' enemies
     // -------------------------------------------------------
 
-    playerShooterBulletCollisionHandler: (player, bullet) => {
-      p.totalKillCount += 1;
+    shooterBulletCollisionHandler: (player, bullet) => {
+      // remove a life from the player
+      if (p.playerState.lives > 0) {
+        p.playerState.lives--;
+      }
 
-      // The bullet explodes and takes a life.
-      p.lives -= 1;
+      // Update the react state and the phaser text up the top of the screen
+      p.updateReactState({
+        ...p,
+      });
+      livesAndScore.update();
 
       const hitAudio = p.game.sound.add("enemyHit");
       hitAudio.play();
@@ -47,22 +79,28 @@ const collision = {
     // -------------------------------------------------------
 
     playerBulletCollisionHandler: function (alien, bullet) {
-      p.totalKillCount += 1;
       //  When a bullet hits an alien we kill them both
       bullets.player.disableBulletFromBody(bullet.body);
       alien.destroy();
-      p.totalKillCount++;
 
       //AUDIO enemy is hit by bullet
 
       const hitAudio = this.sound.add("enemyHit");
       hitAudio.play();
       if (!alien.texture.key.includes("MissileSeeker")) {
-        //  Increase the score unless it's a missile
+        //  Increase the score,
+        const playerState = {
+          ...p.playerState,
+          score: (p.playerState.score += 20),
+          totalKillCount: p.playerState.totalKillCount++,
+        };
+        // update react states,
         p.updateReactState({
           ...p,
-          score: (p.score += 20),
+          playerState,
         });
+        // and update the phaser text for scores/lives
+        livesAndScore.update();
       }
 
       //  And create an explosion

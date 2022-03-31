@@ -54,7 +54,6 @@ const enemy = {
           utils.random(50, 750),
           "asteroidLargeLevelThree"
         );
-        console.log(asteroid);
         asteroid.body.velocity.x = 60;
       },
       repeat: 4,

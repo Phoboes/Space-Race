@@ -3,6 +3,39 @@ import utils from "../../utilityFunctions";
 import collision from "./collision";
 
 const bullets = {
+  create: () => {
+    // Destroy the old instance of bullets; it's easier to start from scratch.
+    p.bulletState = {};
+
+    // p.bulletState.disableBulletFromBody = bullets.player.disableBulletFromBody;
+    // p.playerState.createCallback = bullets.player.fireBullet;
+
+    //   Initialise the bullet group to thep. and give it to globalVars for global access from other stages
+    p.bullets = p.game.physics.add.group({
+      name: "bullets",
+      enable: false,
+      createCallback: bullets.player.createCallback,
+      allowGravity: false,
+    });
+
+    p.bullets.createMultiple({
+      key: "levelTenBullet",
+      quantity: 10,
+      active: false,
+      visible: false,
+    });
+
+    // // If a bullet hits the world bounds, destroy it.
+    // p.game.physics.world.on(
+    //   "worldbounds",
+    //   bullets.player.disableBulletFromBody
+    // );
+
+    // Todo: Look at revising the previous levels' firing mechanisms to this model
+    // enables access to the firing function in globalvar, allowing it to be called from Update.
+    p.playerState.fireBulletFromPlayer = bullets.player.fireBullet;
+  },
+
   alien: {
     create: {
       shooterBullet: (shooter) => {
@@ -12,11 +45,11 @@ const bullets = {
         if (p.enemies.bullets === null) {
           p.enemies.bullets = p.game.physics.add.group();
 
-          // Listen for collisions between the player and bullets
+          // Listen for collisions between the player and bullets; we create this here rather than in 'create' because this group doesn't exist att the start
           p.game.physics.add.overlap(
             p.enemies.bullets,
             p.player,
-            collision.player.playerShooterBulletCollisionHandler,
+            collision.player.shooterBulletCollisionHandler,
             null,
             p.game
           );
@@ -105,7 +138,7 @@ const bullets = {
         p.game.physics.add.overlap(
           p.enemies.bullets,
           p.player,
-          collision.player.playerShooterBulletCollisionHandler,
+          collision.player.shooterBulletCollisionHandler,
           null,
           p.game
         );
@@ -191,12 +224,16 @@ const bullets = {
       );
 
       bullet.body.particleManager = particles;
+      bullet.particles = particles;
       bullet.play("levelNineShot");
-      const playerShot = p.game.sound.add("shortPlayerShot8");
+
+      // Creates a reference to the "playerShot" sound file set in preload (and plays it).
+      const playerShot = p.game.sound.add(p.audio.playerShot);
       playerShot.play();
       return bullet;
     },
-    disableBulletFromBody: function (body) {
+    disableBulletFromBody: function (bullet) {
+      const body = bullet.gameObject.body;
       body.particleManager.destroy();
       body.gameObject.disableBody(true, true);
     },

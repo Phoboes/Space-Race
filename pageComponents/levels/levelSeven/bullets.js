@@ -10,7 +10,6 @@ const bullets = {
     //   Initialise the bullet group to the game and give it to globalVars for global access from other stages
     p.bullets = p.game.physics.add.group({
       name: "bullets",
-      // collideWorldBounds: true,
       enable: false,
       createCallback: p.bulletState.createBullet,
       allowGravity: false,
@@ -32,7 +31,6 @@ const bullets = {
       bullets.fireBulletFromGroup(p.bullets, p.player.x, p.player.y, 0, -300);
 
       // Creates a reference to the "playerShot" sound file set in preload (and plays it).
-      p.audio.playerShot = "babyPew";
       const playerShot = p.game.sound.add(p.audio.playerShot);
       playerShot.play();
     };
@@ -66,6 +64,27 @@ const bullets = {
     bullet.setVelocity(vx, vy);
     // Adjust the bullet's graphic to the player's angle
     bullet.angle = p.player.angle;
+    // This offsets the bullet from the shooter's body slightly so it doesn't fire straight from the middle of its body
+    Phaser.Math.RotateAroundDistance(
+      bullet,
+      x,
+      y,
+      bullet.angle * Phaser.Math.DEG_TO_RAD,
+      30
+    );
+
+    // Animates colour changes of the bullet during flight
+    p.game.anims.create({
+      key: "rainbowBullet",
+      frames: p.game.anims.generateFrameNumbers("levelSevenBullet", {
+        start: 0,
+        end: 4,
+      }),
+      frameRate: 4,
+      repeat: -1,
+    });
+
+    bullet.play("rainbowBullet");
   },
 
   //   The 'kill' method called when the bullet hits a worldbound or an enemy; disables it and puts it back up for the bullet pool to use

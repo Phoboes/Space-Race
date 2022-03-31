@@ -10,7 +10,7 @@ const utils = {
   },
 
   delay: (t) => {
-    p.canFire = false;
+    p.playerState.canFire = false;
     return new Promise((resolve) => {
       setTimeout(resolve, t);
     });
@@ -22,11 +22,52 @@ const utils = {
     alien.body.drawDebug(graphics);
   },
 
-  reset: {
-    groups: () => {
-      // p.aliens = null;
-    },
-    player: () => {},
+  resetGlobalVar: () => {
+    p = {
+      // Game logic
+      game: null,
+      player: null,
+      aliens: null,
+      bullets: null,
+      gameState: {
+        level: 1,
+        stageText: null,
+        levelPending: false,
+        canAdvanceLevel: true,
+        cursorKeys: null,
+      },
+      playerState: {
+        ship: null,
+        alive: true,
+        score: 0,
+        velocity: 200,
+        lives: 3,
+        canFire: true,
+        godMode: false,
+        totalKillCount: 0,
+        animation: null,
+        fireBullet: function () {},
+      },
+      textState: {
+        playerData: null,
+      },
+      alienState: {
+        collisionHandler: null,
+      },
+      bulletState: {
+        createCallback: null,
+        disableBulletFromBody: null,
+      },
+      enemies: {
+        update: null,
+        bullets: null,
+      },
+
+      audio: {
+        playerShot: "playerShot",
+        enemyHit: "enemyHit",
+      },
+    };
   },
 };
 

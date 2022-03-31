@@ -1,4 +1,5 @@
 import p from "../../globalVars";
+import livesAndScore from "../../render/livesAndScore";
 
 const collision = {
   enable: () => {
@@ -26,19 +27,22 @@ const collision = {
     }
 
     //AUDIO enemy is hit by bullet
-    const hitAudio = p.game.sound.add("enemyHit");
+    const hitAudio = p.game.sound.add(p.audio.enemyHit);
     hitAudio.play();
 
-    //  Increase the score
+    //  Increase the score,
     const playerState = {
       ...p.playerState,
       score: (p.playerState.score += 20),
       totalKillCount: p.playerState.totalKillCount++,
     };
+    // update react states,
     p.updateReactState({
       ...p,
       playerState,
     });
+    // and update the phaser text for scores/lives
+    livesAndScore.update();
 
     //  And create an explosion
     collision.explosion.create(alien);

@@ -3,6 +3,39 @@ import utils from "../../utilityFunctions";
 import collision from "./collision";
 
 const bullets = {
+  create: () => {
+    // Destroy the old instance of bullets; it's easier to start from scratch.
+    p.bulletState = {};
+
+    // p.bulletState.disableBulletFromBody = bullets.player.disableBulletFromBody;
+    // p.playerState.createCallback = bullets.player.fireBullet;
+
+    //   Initialise the bullet group to thep. and give it to globalVars for global access from other stages
+    p.bullets = p.game.physics.add.group({
+      name: "bullets",
+      enable: false,
+      createCallback: bullets.player.createCallback,
+      allowGravity: false,
+    });
+
+    p.bullets.createMultiple({
+      key: "levelTenBullet",
+      quantity: 10,
+      active: false,
+      visible: false,
+    });
+
+    // // If a bullet hits the world bounds, destroy it.
+    // p.game.physics.world.on(
+    //   "worldbounds",
+    //   bullets.player.disableBulletFromBody
+    // );
+
+    // Todo: Look at revising the previous levels' firing mechanisms to this model
+    // enables access to the firing function in globalvar, allowing it to be called from Update.
+    p.playerState.fireBulletFromPlayer = bullets.player.fireBullet;
+  },
+
   alien: {
     create: {
       shooterBullet: (shooter) => {
@@ -16,7 +49,7 @@ const bullets = {
           p.game.physics.add.overlap(
             p.enemies.bullets,
             p.player,
-            collision.player.playerShooterBulletCollisionHandler,
+            collision.player.shooterBulletCollisionHandler,
             null,
             p.game
           );
@@ -105,7 +138,7 @@ const bullets = {
         p.game.physics.add.overlap(
           p.enemies.bullets,
           p.player,
-          collision.player.playerShooterBulletCollisionHandler,
+          collision.player.shooterBulletCollisionHandler,
           null,
           p.game
         );

@@ -1,5 +1,6 @@
 import p from "../../globalVars";
 import utils from "../../utilityFunctions";
+import livesAndScore from "../../render/livesAndScore";
 
 const collision = {
   enable: () => {
@@ -16,18 +17,6 @@ const collision = {
     );
   },
 
-  // playerAlienCollisionHandler: (player, alien) => {
-  //   //  When an alien hits the player, kill it and take a life
-  //   alien.destroy();
-  //   p.playerState.lives--;
-
-  //   //AUDIO enemy is hit by bullet
-  //   const hitAudio = p.game.sound.add("enemyHit");
-  //   hitAudio.play();
-  //   //  And create an explosion
-  //   collision.explosion.create(player);
-  // },
-
   playerShotAlienHandler: (alien, bullet) => {
     const { x, y } = alien;
     // Get the alien's velocity *before* removing it from the scene
@@ -38,7 +27,7 @@ const collision = {
     // If it's a large asteroid, generate some fragments
     if (alien.texture.key === "asteroidLargeLevelThree") {
       // Rather than a fixed velocity, these children take the velocity angle from the parent asteroid
-      // With that velocity they branch out from it randomly between -40 and 40 degrees and set their velocities to that angle
+      // With that velocity they branch out from it randomly between -40 and 40 degrees and set their trajectories based on that new angle
       const firstChildAsteroid = p.aliens.create(x, y, "invader");
       const firstChildVx = velocity.x + utils.random(-40, 40);
       const firstChildVy = velocity.y + utils.random(-40, 40);
@@ -51,19 +40,22 @@ const collision = {
     }
 
     //AUDIO enemy is hit by bullet
-    const hitAudio = p.game.sound.add("enemyHit");
+    const hitAudio = p.game.sound.add(p.audio.enemyHit);
     hitAudio.play();
 
-    //  Increase the score
+    //  Increase the score,
     const playerState = {
       ...p.playerState,
       score: (p.playerState.score += 20),
       totalKillCount: p.playerState.totalKillCount++,
     };
+    // update react states,
     p.updateReactState({
       ...p,
       playerState,
     });
+    // and update the phaser text for scores/lives
+    livesAndScore.update();
 
     //  And create an explosion
     collision.explosion.create(alien);

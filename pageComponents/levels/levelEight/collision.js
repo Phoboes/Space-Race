@@ -44,7 +44,7 @@ const collision = {
     livesAndScore.update();
 
     // Play an explosion sound
-    const hitAudio = p.game.sound.add("enemyHit");
+    const hitAudio = p.game.sound.add(p.audio.enemyHit);
     hitAudio.play();
   },
 
@@ -115,8 +115,8 @@ const collision = {
       // If the animation hasn't been created, create it; prevents duplicate creations
       if (collision.explosion.animation === null) {
         collision.explosion.animation = p.game.anims.create({
-          key: "levelSixKaboom",
-          frames: p.game.anims.generateFrameNumbers("levelSixKaboom", {
+          key: "levelEightKaboom",
+          frames: p.game.anims.generateFrameNumbers("levelEightKaboom", {
             start: 0,
             end: 15,
           }),
@@ -128,7 +128,7 @@ const collision = {
       //  Place the explosion, play the animation, hide it again.
       collision.explosion.sprite.setPosition(x, y);
       collision.explosion.sprite.setVisible(true);
-      collision.explosion.sprite.play("levelSixKaboom");
+      collision.explosion.sprite.play("levelEightKaboom");
       //   Once the animation finishes, remove it from the scene
       collision.explosion.sprite.on("animationcomplete", () => {
         collision.explosion.sprite.setVisible(false);

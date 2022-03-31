@@ -1,4 +1,5 @@
 import p from "../../globalVars";
+import livesAndScore from "../../render/livesAndScore";
 
 const collision = {
   enable: () => {
@@ -18,10 +19,20 @@ const collision = {
   playerAlienCollisionHandler: (player, alien) => {
     //  When an alien hits the player, kill it and take a life
     alien.destroy();
-    p.playerState.lives--;
+
+    // remove a life from the player
+    if (p.playerState.lives > 0) {
+      p.playerState.lives--;
+    }
+
+    // Update the react state and the phaser text up the top of the screen
+    p.updateReactState({
+      ...p,
+    });
+    livesAndScore.update();
 
     //AUDIO enemy is hit by bullet
-    const hitAudio = p.game.sound.add("enemyHit");
+    const hitAudio = p.game.sound.add(p.audio.enemyHit);
     hitAudio.play();
     //  And create an explosion
     collision.explosion.create(player);
@@ -31,7 +42,6 @@ const collision = {
     const { x, y } = alien;
     //  When a bullet hits an alien we kill them both
     bullet.body.gameObject.disableBody(true, true);
-    console.log(alien);
     alien.destroy();
 
     // If it's a large asteroid, generate some fragments
@@ -50,16 +60,19 @@ const collision = {
     const hitAudio = p.game.sound.add("enemyHit");
     hitAudio.play();
 
-    //  Increase the score
+    //  Increase the score,
     const playerState = {
       ...p.playerState,
       score: (p.playerState.score += 20),
       totalKillCount: p.playerState.totalKillCount++,
     };
+    // update react states,
     p.updateReactState({
       ...p,
       playerState,
     });
+    // and update the phaser text for scores/lives
+    livesAndScore.update();
 
     //  And create an explosion
     collision.explosion.create(alien);

@@ -2,9 +2,6 @@ import p from "../../globalVars";
 
 const bullets = {
   create: () => {
-    // Todo: Move this logic in the game state
-    p.playerState.fireRate = 500;
-
     // Destroy the old instance of bullets; it's easier to start from scratch.
     p.bulletState = {};
 
@@ -13,13 +10,12 @@ const bullets = {
     //   Initialise the bullet group to the game and give it to globalVars for global access from other stages
     p.bullets = p.game.physics.add.group({
       name: "bullets",
-      // collideWorldBounds: true,
       enable: false,
       createCallback: p.bulletState.createBullet,
       allowGravity: false,
     });
 
-    // Create a bullet pool to recycle bullets from
+    // Create a bullet pool to recycle bullets from -- key is irrelevant, it just needs a valid value otherwise it breaks.
     p.bullets.createMultiple({
       key: "levelSixBullet",
       quantity: 5,
@@ -55,7 +51,6 @@ const bullets = {
 
   //   Enables the bullet and gives it velocity
   fireBullet: (bullet) => {
-    // Todo: Get the bullet offset used for "shooters" and use it here to move the bullet away from the player a little; also increase fire rate
     bullet.enableBody(true, x, y, true, true);
     // vector as direction only by setting the speed param to 1
     const vec = p.game.physics.velocityFromAngle(p.player.angle, 1);
@@ -78,6 +73,19 @@ const bullets = {
       bullet.angle * Phaser.Math.DEG_TO_RAD,
       20
     );
+
+    // bullet animation
+    p.game.anims.create({
+      key: "levelEightShot",
+      frames: p.game.anims.generateFrameNumbers("levelEightBullet", {
+        start: 0,
+        end: 1,
+      }),
+      frameRate: 4,
+      repeat: -1,
+    });
+
+    bullet.play("levelEightShot");
   },
 
   //   The 'kill' method called when the bullet hits a worldbound or an enemy; disables it and puts it back up for the bullet pool to use

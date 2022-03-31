@@ -1,6 +1,8 @@
 import p from "../../globalVars";
 import utils from "../../utilityFunctions";
 
+// Level eight introduces the first 'smart' enemies; seekers that chase the player
+
 const enemy = {
   create: (config) => {
     const { x, y } = config;
@@ -17,14 +19,18 @@ const enemy = {
     seeker.play("levelEightSeeker");
   },
 
-  populate: (game) => {
+  populate: () => {
+    // Allows the update function for seeking behavior to be accessed by game update calls
+    p.enemies.update = enemy.update;
+
+    // Start the game with a seeker incoming
     enemy.create({
       x: utils.random(50, 750),
       y: -50,
     });
 
     // Top spawn
-    game.time.addEvent({
+    p.game.time.addEvent({
       delay: 4000,
       callback: () => {
         enemy.create({
@@ -36,7 +42,7 @@ const enemy = {
     });
 
     // Bottom Spawn
-    game.time.addEvent({
+    p.game.time.addEvent({
       delay: 6000,
       callback: () => {
         enemy.create({
@@ -48,7 +54,7 @@ const enemy = {
     });
 
     // Left Spawn
-    game.time.addEvent({
+    p.game.time.addEvent({
       delay: 5000,
       callback: () => {
         enemy.create({
@@ -59,7 +65,7 @@ const enemy = {
       repeat: 2,
     });
     // Right spawn
-    game.time.addEvent({
+    p.game.time.addEvent({
       delay: 7000,
       callback: () => {
         enemy.create({

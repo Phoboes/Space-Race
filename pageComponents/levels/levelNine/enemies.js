@@ -65,8 +65,11 @@ const enemy = {
 
   // Sets all the alien waves
   populate: (game) => {
+    // Allows the update function for seeking behavior to be accessed by game update calls
+    p.enemies.update = enemy.update;
+
     // Top spawn
-    game.time.addEvent({
+    p.game.time.addEvent({
       delay: 4000,
       callback: () => {
         enemy.create.seeker({
@@ -81,7 +84,7 @@ const enemy = {
       x: utils.random(50, 750),
       y: -50,
     });
-    game.time.addEvent({
+    p.game.time.addEvent({
       delay: 7000,
       callback: () => {
         enemy.create.shooter({
@@ -99,7 +102,7 @@ const enemy = {
       y: 800,
     });
 
-    game.time.addEvent({
+    p.game.time.addEvent({
       delay: 6000,
       callback: () => {
         enemy.create.seeker({
@@ -110,7 +113,7 @@ const enemy = {
       repeat: 2,
     });
 
-    game.time.addEvent({
+    p.game.time.addEvent({
       delay: 9000,
       callback: () => {
         enemy.create.shooter({
@@ -122,7 +125,7 @@ const enemy = {
     });
 
     // Left Spawn
-    game.time.addEvent({
+    p.game.time.addEvent({
       delay: 10000,
       callback: () => {
         enemy.create.seeker({
@@ -133,7 +136,7 @@ const enemy = {
       repeat: 3,
     });
 
-    game.time.addEvent({
+    p.game.time.addEvent({
       delay: 11000,
       callback: () => {
         enemy.create.shooter({
@@ -145,7 +148,7 @@ const enemy = {
     });
 
     // Right spawn
-    game.time.addEvent({
+    p.game.time.addEvent({
       delay: 7000,
       callback: () => {
         enemy.create.seeker({
@@ -156,7 +159,7 @@ const enemy = {
       repeat: 1,
     });
 
-    game.time.addEvent({
+    p.game.time.addEvent({
       delay: 3000,
       callback: () => {
         enemy.create.shooter({
@@ -167,7 +170,7 @@ const enemy = {
       repeat: 0,
     });
 
-    game.time.addEvent({
+    p.game.time.addEvent({
       delay: 12000,
       callback: () => {
         enemy.create.shooter({

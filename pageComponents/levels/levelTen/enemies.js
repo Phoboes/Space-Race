@@ -44,7 +44,7 @@ const enemy = {
 
       // Fire seeker missiles
       const timer = p.game.time.addEvent({
-        delay: 4500,
+        delay: 5000,
         callback: () => {
           // Get the current x/y, not the x/y provided when the parent was created
           const currentXY = missileLauncher.getCenter();
@@ -183,9 +183,12 @@ const enemy = {
   },
 
   // Sets all the alien waves
-  populate: (game) => {
+  populate: () => {
+    // Allows the update function for seeking behavior to be accessed by game update calls
+    p.enemies.update = enemy.update;
+
     // Top spawn
-    game.time.addEvent({
+    p.game.time.addEvent({
       delay: 8000,
       callback: () => {
         // Create a random enemy from the list out of bounds top of map
@@ -195,7 +198,7 @@ const enemy = {
     });
 
     // Left spawn
-    game.time.addEvent({
+    p.game.time.addEvent({
       delay: 6000,
       callback: () => {
         enemy.spawnRandom(-50, utils.random(-50, 850));
@@ -208,7 +211,7 @@ const enemy = {
     // Introduce the missile launcher
     enemy.create.missileShip({ x: 850, y: utils.random(-50, 850) });
 
-    game.time.addEvent({
+    p.game.time.addEvent({
       delay: 9000,
       callback: () => {
         enemy.spawnRandom(850, utils.random(-50, 850));
@@ -217,8 +220,8 @@ const enemy = {
     });
 
     // BOTTOM spawn
-    game.time.addEvent({
-      delay: 7000,
+    p.game.time.addEvent({
+      delay: 12000,
       callback: () => {
         enemy.spawnRandom(utils.random(-50, 850), 750);
       },
@@ -228,7 +231,7 @@ const enemy = {
 
   spawnRandom: (x, y) => {
     let enemyType;
-    switch (utils.random(0, 3)) {
+    switch (utils.random(0, 2)) {
       case 0:
         enemyType = "missileShip";
         break;

@@ -4,12 +4,21 @@ const stageText = {
   levels: {
     one: {
       startText: () => {
-        return p.game.add.text(250, 80, "Press Space to begin.", {
-          fontFamily: "Arial",
-          color: "black",
-          fontSize: "3em",
-          align: "center",
-        });
+        if (p.textState.levelText === null) {
+          p.textState.levelText = {};
+          p.textState.levelText.styles = {
+            fontFamily: "Arial",
+            color: "black",
+            fontSize: "3em",
+          };
+        }
+
+        return p.game.add.text(
+          250,
+          80,
+          "Press Space to begin.",
+          p.textState.levelText.styles
+        );
       },
       endText: () => {
         return p.game.add.text(250, 80, "Nice! Now try left and right!", {

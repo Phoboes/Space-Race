@@ -1,4 +1,5 @@
 import p from "../../globalVars";
+import livesAndScore from "../../render/livesAndScore";
 
 const collision = {
   enable: () => {
@@ -15,10 +16,20 @@ const collision = {
   playerAlienCollisionHandler: (player, alien) => {
     //  When an alien hits the player, kill it and take a life
     alien.destroy();
-    p.playerState.lives--;
+
+    // remove a life from the player
+    if (p.playerState.lives > 0) {
+      p.playerState.lives--;
+    }
+
+    // Update the react state and the phaser text up the top of the screen
+    p.updateReactState({
+      ...p,
+    });
+    livesAndScore.update();
 
     //AUDIO enemy is hit by bullet
-    const hitAudio = p.game.sound.add("enemyHit");
+    const hitAudio = p.game.sound.add(p.audio.enemyHit);
     hitAudio.play();
     //  And create an explosion
     collision.explosion.create(player);
@@ -31,28 +42,23 @@ const collision = {
 
     create: (target) => {
       const { x, y } = target;
-      // If the explosion group hasn't been created for this level, do so
-      if (collision.explosion.sprite === null) {
-        collision.explosion.sprite = p.game.physics.add.sprite({
-          x: -100,
-          y: -100,
-        });
-        // And hide it offscreen until needed
-        collision.explosion.sprite.setVisible(false);
-      }
-
-      // If the animation hasn't been created, create it; prevents duplicate creations
-      if (collision.explosion.animation === null) {
-        collision.explosion.animation = p.game.anims.create({
-          key: "kaboom",
-          frames: p.game.anims.generateFrameNumbers("kaboom", {
-            start: 0,
-            end: 15,
-          }),
-          frameRate: 25,
-          repeat: 0,
-        });
-      }
+      // Create the explosion group
+      collision.explosion.sprite = p.game.physics.add.sprite({
+        x: -100,
+        y: -100,
+      });
+      // And hide it offscreen until needed
+      collision.explosion.sprite.setVisible(false);
+      // Give it an animation
+      collision.explosion.animation = p.game.anims.create({
+        key: "kaboom",
+        frames: p.game.anims.generateFrameNumbers("kaboom", {
+          start: 0,
+          end: 15,
+        }),
+        frameRate: 25,
+        repeat: 0,
+      });
 
       //  Place the explosion, play the animation, hide it again.
       collision.explosion.sprite.setPosition(x, y);

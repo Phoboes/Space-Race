@@ -1,28 +1,26 @@
 import p from "../../globalVars";
-// import levelOne from "./levelOne";
-// import levelTwo from "./levelTwo";
-// import LevelThree from "./levelThree";
-// import levelFour from "./levelFour";
-import utils from "../../utilityFunctions";
 import enemies from "./enemies";
 import collision from "./collision";
 import bullets from "./bullets";
+import livesAndScore from "../../render/livesAndScore";
 
 // Same gameplay as lvl 4 but ship turning enabled and new graphic for ship + bullets
 
 const levelFive = {
-  init: (game) => {
+  init: () => {
     // Change the ship's skin
     p.player.setTexture("shipLevel5", 0);
     bullets.create();
-    // enemies.populate();
+    enemies.populate();
     collision.enable();
+
+    // Render and update styles of the lives and score att he top of the screen
+    livesAndScore.update();
 
     // This causes a delay to allow the level to set up and allow aliens to spawn
     p.gameState.canAdvanceLevel = false;
-    // todo: 5000, reset this once done testing
     p.game.time.addEvent({
-      delay: 1000,
+      delay: 5000,
       callback: () => {
         p.gameState.canAdvanceLevel = true;
       },
