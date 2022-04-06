@@ -2,61 +2,29 @@ import p from "../../globalVars";
 import utils from "../../utilityFunctions";
 
 const enemy = {
+  create: () => {
+    const alien = p.aliens.create(utils.random(50, 750), -50);
+    alien.body.velocity.y = 60;
+    p.game.anims.create({
+      key: "invaderLarge",
+      frames: p.game.anims.generateFrameNumbers("invaderLarge", {
+        start: 0,
+        end: 1,
+      }),
+      frameRate: 3,
+      repeat: -1,
+    });
+    alien.play("invaderLarge");
+  },
   populate: () => {
+    enemy.create();
     // Top
     p.game.time.addEvent({
-      delay: 4000,
+      delay: 2000,
       callback: () => {
-        const asteroid = p.aliens.create(
-          utils.random(50, 750),
-          -50,
-          "asteroidLargeLevelThree"
-        );
-        asteroid.body.velocity.y = 60;
+        enemy.create();
       },
-      repeat: 4,
-    });
-
-    // Bottom
-    p.game.time.addEvent({
-      delay: 5000,
-      callback: () => {
-        const asteroid = p.aliens.create(
-          utils.random(50, 750),
-          800,
-          "asteroidLargeLevelThree"
-        );
-        asteroid.body.velocity.y = -60;
-      },
-      repeat: 4,
-    });
-
-    // Right
-    p.game.time.addEvent({
-      delay: 6000,
-      callback: () => {
-        const asteroid = p.aliens.create(
-          800,
-          utils.random(50, 750),
-          "asteroidLargeLevelThree"
-        );
-        asteroid.body.velocity.x = -60;
-      },
-      repeat: 4,
-    });
-
-    // Left
-    p.game.time.addEvent({
-      delay: 4000,
-      callback: () => {
-        const asteroid = p.aliens.create(
-          -50,
-          utils.random(50, 750),
-          "asteroidLargeLevelThree"
-        );
-        asteroid.body.velocity.x = -60;
-      },
-      repeat: 4,
+      repeat: 12,
     });
   },
 };

@@ -16,25 +16,25 @@ export default function init(game) {
   if (p.gameState.level === 1) {
     levelOne.init(game);
   } else if (p.gameState.level === 2) {
-    levelTwo.init(game);
+    levelTwo.init();
   } else if (p.gameState.level === 3) {
-    levelThree.init(game);
+    levelThree.init();
   } else if (p.gameState.level === 4) {
-    levelFour.init(game);
+    levelFour.init();
   } else if (p.gameState.level === 5) {
-    levelFive.init(game);
+    levelFive.init();
   } else if (p.gameState.level === 6) {
-    levelSix.init(game);
+    levelSix.init();
   } else if (p.gameState.level === 7) {
-    levelSeven.init(game);
+    levelSeven.init();
   } else if (p.gameState.level === 8) {
-    levelEight.init(game);
+    levelEight.init();
   } else if (p.gameState.level === 9) {
-    levelNine.init(game);
+    levelNine.init();
   } else if (p.gameState.level === 10) {
-    levelTen.init(game);
+    levelTen.init();
   } else if (p.gameState.level === 11) {
-    levelEleven.init(game);
+    levelEleven.init();
   } else if (p.gameState.level === 12) {
     // levelTen.init(game);
     return null;

@@ -6,8 +6,8 @@ import livesAndScore from "../../render/livesAndScore";
 
 // Level 8 is another graphics upgrade and the introduction of 'seekers', enemies who actively chase the player to kamikaze
 const levelEight = {
-  init: (game) => {
-    // game.add.image(0, 0, "levelEightBackground").setOrigin(0, 0);
+  init: () => {
+    // p.game.add.image(0, 0, "levelEightBackground").setOrigin(0, 0);
 
     // -------------------------------------
     // Reset the player for new collisions
@@ -19,7 +19,7 @@ const levelEight = {
     p.player = null;
 
     //  Add the player to the game
-    p.player = game.physics.add.sprite(x, y);
+    p.player = p.game.physics.add.sprite(x, y);
     // Angle it to the old ship's angle
     p.player.angle = angle;
     // and prevent it falling through the world
@@ -28,7 +28,7 @@ const levelEight = {
 
     // Set up the game
 
-    enemies.populate();
+    // enemies.populate();
     bullets.create();
     collisions.enable();
 
@@ -47,9 +47,9 @@ const levelEight = {
       },
     });
 
-    p.playerAnimation = game.anims.create({
+    p.playerAnimation = p.game.anims.create({
       key: "levelEightShipAnimation",
-      frames: game.anims.generateFrameNumbers("levelEightShip", {
+      frames: p.game.anims.generateFrameNumbers("levelEightShip", {
         start: 1,
         end: 0,
       }),

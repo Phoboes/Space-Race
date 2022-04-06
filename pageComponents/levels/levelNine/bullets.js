@@ -68,7 +68,7 @@ const bullets = {
             start: 0,
             end: 1,
           }),
-          frameRate: 4,
+          frameRate: 8,
           repeat: -1,
         });
         bullet.play("levelNineShooterBulletShot");

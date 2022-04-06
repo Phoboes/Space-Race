@@ -7,7 +7,7 @@ import livesAndScore from "../../render/livesAndScore";
 // Level 7 introduces the first music, tetris ship and animations, player animations while moving
 
 const levelSeven = {
-  init: (game) => {
+  init: () => {
     // -------------------------------------
     // Reset the player for new collisions
     // -------------------------------------
@@ -18,17 +18,19 @@ const levelSeven = {
     p.player = null;
 
     //  Add the player to the game
-    p.player = game.physics.add.sprite(x, y);
+    p.player = p.game.physics.add.sprite(x, y);
     // Angle it to the old ship's angle
     p.player.angle = angle;
     // and prevent it falling through the world
     p.player.setCollideWorldBounds(true);
     p.player.body.allowGravity = false;
 
-    // Add the first ship animations
-    p.playerAnimation = game.anims.create({
+    // Force the animation to reset -- it doesn't do it otherwise for this level, for no apparent reason
+    p.playerAnimation.destroy();
+
+    p.playerAnimation = p.game.anims.create({
       key: "levelSevenShipAnimation",
-      frames: game.anims.generateFrameNumbers("levelSevenShip", {
+      frames: p.game.anims.generateFrameNumbers("levelSevenShip", {
         start: 1,
         end: 0,
       }),

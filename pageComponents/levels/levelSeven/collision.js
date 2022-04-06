@@ -130,6 +130,11 @@ const collision = {
       );
       explosion.play(explosionAnimationKey.key);
       explosion.body.allowGravity = false;
+      //   Once the animation finishes, remove it from the scene
+      explosion.on("animationcomplete", () => {
+        explosion.destroy();
+      });
+      // console.log(explosion);
     },
     getExplosionType: (asteroidId, size) => {
       // The ID is generated randomly when the alien is spawned -- it's the frame on which the sprite is frozen and determines the asteroid colour and is used to determine the explosion colour.
@@ -143,7 +148,7 @@ const collision = {
             `levelSeven${size}AsteroidExplosionYellow`,
             {
               start: 0,
-              end: 15,
+              end: 8,
             }
           ),
           frameRate: 25,
@@ -157,7 +162,7 @@ const collision = {
             `levelSeven${size}AsteroidExplosionRed`,
             {
               start: 0,
-              end: 15,
+              end: 8,
             }
           ),
           frameRate: 25,
@@ -171,7 +176,7 @@ const collision = {
             `levelSeven${size}AsteroidExplosionGreen`,
             {
               start: 0,
-              end: 15,
+              end: 8,
             }
           ),
           frameRate: 25,
@@ -185,7 +190,7 @@ const collision = {
             `levelSeven${size}AsteroidExplosionPurple`,
             {
               start: 0,
-              end: 15,
+              end: 8,
             }
           ),
           frameRate: 25,
@@ -199,7 +204,7 @@ const collision = {
             `levelSeven${size}AsteroidExplosionCyan`,
             {
               start: 0,
-              end: 15,
+              end: 8,
             }
           ),
           frameRate: 25,

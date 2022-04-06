@@ -18,7 +18,7 @@ const bullets = {
 
     // Create a bullet pool to recycle bullets from
     p.bullets.createMultiple({
-      key: "levelFiveBullet",
+      key: "bulletLevelFour",
       quantity: 5,
       active: false,
       visible: false,

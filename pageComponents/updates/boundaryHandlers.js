@@ -2,7 +2,8 @@ const handler = {
   boundaryCheck: (group) => {
     for (let i = 0; i < group.children.entries.length; i++) {
       const { x, y } = group.children.entries[i].body;
-      if (x > 900 || x < -100 || y > 900 || y < -100) {
+      // console.log(y);
+      if (x > 900 || x < -100 || y > 700 || y < -100) {
         group.children.entries[i].destroy();
       }
     }

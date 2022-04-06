@@ -11,7 +11,7 @@ const enemy = {
           key: "largeAsteroidSpin",
           frames: p.game.anims.generateFrameNumbers("levelSixAsteroidLarge", {
             start: 0,
-            end: 3,
+            end: 7,
           }),
           frameRate: 3,
           repeat: -1,

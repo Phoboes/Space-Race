@@ -7,9 +7,9 @@ import livesAndScore from "../../render/livesAndScore";
 // Level 6 introduces the first graphics changes; black background and white animations like oldschool Asteroids
 
 const levelSix = {
-  init: (game) => {
+  init: () => {
     // Change the background to black
-    const camera = game.cameras.cameras[0];
+    const camera = p.game.cameras.cameras[0];
     camera.setBackgroundColor("rgba(0,0,0,1)");
 
     // -------------------------------------
@@ -22,12 +22,27 @@ const levelSix = {
     p.player = null;
 
     //  Add the player to the game
-    p.player = game.physics.add.sprite(x, y, "shipLevel6");
+    p.player = p.game.physics.add.sprite(x, y);
     // Angle it to the old ship's angle
     p.player.angle = angle;
     // and prevent it falling through the world
     p.player.setCollideWorldBounds(true);
     p.player.body.allowGravity = false;
+
+    // Add the ship animations
+    p.playerAnimation = p.game.anims.create({
+      key: "levelSevenShipAnimation",
+      frames: p.game.anims.generateFrameNumbers("levelSixShip", {
+        start: 1,
+        end: 2,
+      }),
+      frameRate: 15,
+      repeat: 0,
+      yoyo: true,
+    });
+
+    // Begin the animation
+    p.player.play(p.playerAnimation.key);
 
     // Set up the game
 
@@ -44,6 +59,10 @@ const levelSix = {
       color: "rgb(255,255,255)",
     };
     livesAndScore.update();
+    // Trigger css changes in react
+    p.updateReactState({
+      ...p,
+    });
 
     // This causes a delay to allow the level to set up and allow aliens to spawn
     p.gameState.canAdvanceLevel = false;

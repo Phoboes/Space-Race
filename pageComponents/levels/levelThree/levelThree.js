@@ -7,6 +7,23 @@ import livesAndScore from "../../render/livesAndScore";
 
 const levelThree = {
   init: () => {
+    // -------------------------------------
+    // Reset the player for new collisions
+    // -------------------------------------
+
+    // Get the old coordinates of the player and wipe it from the game
+    const { x, y, angle } = p.player;
+    p.player.destroy();
+    p.player = null;
+
+    //  Add the player to the game
+    p.player = p.game.physics.add.sprite(x, y, "levelThreeShip");
+    // Angle it to the old ship's angle
+    p.player.angle = angle;
+    // and prevent it falling through the world
+    p.player.setCollideWorldBounds(true);
+    p.player.body.allowGravity = false;
+
     enemies.populate();
     // Modifies the collision handler for large asteroids
     collision.enable();

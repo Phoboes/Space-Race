@@ -53,16 +53,29 @@ const collision = {
     // Get the alien's velocity *before* removing it from the scene
     const velocity = alien.body.velocity;
     bullet.body.gameObject.disableBody(true, true);
+    console.log(alien);
     alien.destroy();
 
     // If it's a large asteroid, generate some fragments
     if (alien.texture.key === "levelSixAsteroidLarge") {
+      // Create the animation for the children
+      p.game.anims.create({
+        key: "levelSixAsteroidSmallSpin",
+        frames: p.game.anims.generateFrameNumbers("levelSixAsteroidSmall", {
+          start: 0,
+          end: 3,
+        }),
+        frameRate: 3,
+        repeat: -1,
+      });
+
       // Rather than a fixed velocity, these children take the velocity angle from the parent asteroid
       // With that velocity they branch out from it randomly between -40 and 40 degrees and set their velocities to that angle
       const firstChildAsteroid = p.aliens.create(x, y, "levelSixAsteroidSmall");
       const firstChildVx = velocity.x + utils.random(-40, 40);
       const firstChildVy = velocity.y + utils.random(-40, 40);
       firstChildAsteroid.setVelocity(firstChildVx, firstChildVy);
+      firstChildAsteroid.setVisible(false);
 
       const secondChildAsteroid = p.aliens.create(
         x,
@@ -72,6 +85,18 @@ const collision = {
       const secondChildVx = velocity.x + utils.random(-40, 40);
       const secondChildVy = velocity.y + utils.random(-40, 40);
       secondChildAsteroid.setVelocity(secondChildVx, secondChildVy);
+      secondChildAsteroid.setVisible(false);
+
+      // Wait a tiny bit for the explosion animation to play before showing and animating the child asteroids
+      p.game.time.addEvent({
+        delay: 200,
+        callback: () => {
+          firstChildAsteroid.setVisible(true);
+          secondChildAsteroid.setVisible(true);
+          firstChildAsteroid.play("levelSixAsteroidSmallSpin");
+          secondChildAsteroid.play("levelSixAsteroidSmallSpin");
+        },
+      });
     }
 
     //AUDIO enemy is hit by bullet

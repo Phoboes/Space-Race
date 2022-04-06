@@ -20,33 +20,56 @@ export default function preload() {
   // Preloaded images for level 3:
   // ------------------------------------
 
-  this.load.image(
-    "asteroidLargeLevelThree",
-    "levels/LevelThree/asteroidLarge.png"
-  );
-  this.load.image(
-    "asteroidSmallLevelThree",
-    "levels/LevelThree/asteroidSmall.png"
-  );
-  this.load.image(
-    "asteroidSplitLevelThree",
-    "levels/LevelThree/asteroidSplit.png"
+  // this.load.image(
+  //   "asteroidLargeLevelThree",
+  //   "levels/LevelThree/asteroidLarge.png"
+  // );
+  // this.load.image(
+  //   "asteroidSmallLevelThree",
+  //   "levels/LevelThree/asteroidSmall.png"
+  // );
+  // this.load.image(
+  //   "asteroidSplitLevelThree",
+  //   "levels/LevelThree/asteroidSplit.png"
+  // );
+
+  this.load.image("levelThreeShip", "levels/LevelThree/shipUpdated.png");
+
+  this.load.spritesheet("invaderLarge", "levels/LevelThree/invaderLarge.png", {
+    frameWidth: 40,
+    frameHeight: 40,
+  });
+
+  this.load.spritesheet("invaderSmall", "levels/LevelThree/invaderSmall.png", {
+    frameWidth: 27,
+    frameHeight: 25,
+  });
+
+  this.load.spritesheet(
+    "levelThreeKaboom",
+    "levels/LevelThree/explosionPixels.png",
+    {
+      frameWidth: 37,
+      frameHeight: 35,
+    }
   );
 
   // ------------------------------------
   // Preloaded images for level 4:
   // ------------------------------------
 
-  this.load.image("shipLevel4", "levels/LevelFour/ship.png");
-  // todo: change/review; stray pixels at edges of image same for lvl 5
-  this.load.image("bulletLevelFour", "levels/LevelFour/bullet2.png");
+  this.load.image("levelFourShip", "levels/LevelFour/shipUpdated.png");
+  this.load.image("bulletLevelFour", "levels/LevelFour/bullet.png");
 
   // ------------------------------------
   //Preloaded images for level 5:
   // ------------------------------------
-
-  this.load.image("shipLevel5", "levels/LevelFive/ship.png");
-  this.load.image("levelFiveBullet", "levels/LevelFive/bullet2.png");
+  // this.load.spritesheet("levelSixShip", "levels/levelSix/shipUpdated.png", {
+  //   frameWidth: 37,
+  //   frameHeight: 35,
+  // });
+  // this.load.image("shipLevel5", "levels/LevelFive/ship.png");
+  // this.load.image("levelFiveBullet", "levels/LevelFive/bullet2.png");
 
   // ------------------------------------
   // Preloaded images for level 6:
@@ -54,15 +77,29 @@ export default function preload() {
 
   this.load.spritesheet(
     "levelSixAsteroidLarge",
-    "levels/LevelSix/asteroidLargesprite.png",
+    "levels/LevelSix/levelSevenAsteroidsExtended.png",
     {
-      frameWidth: 40,
-      frameHeight: 41,
+      frameWidth: 42,
+      frameHeight: 42,
     }
   );
-  this.load.image("levelSixAsteroidSmall", "levels/LevelSix/asteroidSmall.png");
+  this.load.spritesheet(
+    "levelSixAsteroidSmall",
+    "levels/LevelSix/asteroidSmallsprite.png",
+    {
+      frameWidth: 17,
+      frameHeight: 15,
+    }
+  );
+
+  // asteroidSmallsprite.png;
+  // this.load.image("levelSixAsteroidSmall", "levels/LevelSix/asteroidSmall.png");
   this.load.image("levelSixBullet", "levels/LevelSix/bullet2.png");
-  this.load.image("shipLevel6", "levels/LevelSix/ship.png");
+  // this.load.image("shipLevel6", "levels/LevelSix/ship.png");
+  this.load.spritesheet("levelSixShip", "levels/levelSix/shipUpdated.png", {
+    frameWidth: 37,
+    frameHeight: 35,
+  });
   this.load.spritesheet("levelSixKaboom", "levels/LevelSix/explodeWhite.png", {
     frameWidth: 128,
     frameHeight: 128,
@@ -104,28 +141,28 @@ export default function preload() {
 
   this.load.spritesheet(
     "levelSevenLargeAsteroidExplosionYellow",
-    "levels/LevelSeven/bigexplode1.png",
-    { frameWidth: 128, frameHeight: 128 }
+    "levels/LevelSeven/bigexplode1Center.png",
+    { frameWidth: 128, frameHeight: 127 }
   );
   this.load.spritesheet(
     "levelSevenLargeAsteroidExplosionRed",
-    "levels/LevelSeven/bigexplode2.png",
-    { frameWidth: 128, frameHeight: 128 }
+    "levels/LevelSeven/bigExplode2Center.png",
+    { frameWidth: 128, frameHeight: 127 }
   );
   this.load.spritesheet(
     "levelSevenLargeAsteroidExplosionGreen",
-    "levels/LevelSeven/bigexplode3.png",
-    { frameWidth: 128, frameHeight: 128 }
+    "levels/LevelSeven/bigExplode3Center.png",
+    { frameWidth: 128, frameHeight: 127 }
   );
   this.load.spritesheet(
     "levelSevenLargeAsteroidExplosionPurple",
-    "levels/LevelSeven/bigexplode4.png",
-    { frameWidth: 128, frameHeight: 128 }
+    "levels/LevelSeven/bigExplode4Center.png",
+    { frameWidth: 128, frameHeight: 127 }
   );
   this.load.spritesheet(
     "levelSevenLargeAsteroidExplosionCyan",
-    "levels/LevelSeven/bigexplode5.png",
-    { frameWidth: 128, frameHeight: 128 }
+    "levels/LevelSeven/bigExplode5Center.png",
+    { frameWidth: 128, frameHeight: 127 }
   );
 
   // ------------------------------------
@@ -134,28 +171,28 @@ export default function preload() {
 
   this.load.spritesheet(
     "levelSevenMediumAsteroidExplosionYellow",
-    "levels/LevelSeven/explode1.png",
-    { frameWidth: 128, frameHeight: 128 }
+    "levels/LevelSeven/explode1Center.png",
+    { frameWidth: 128, frameHeight: 127 }
   );
   this.load.spritesheet(
     "levelSevenMediumAsteroidExplosionRed",
-    "levels/LevelSeven/explode2.png",
-    { frameWidth: 128, frameHeight: 128 }
+    "levels/LevelSeven/explode2Center.png",
+    { frameWidth: 128, frameHeight: 127 }
   );
   this.load.spritesheet(
     "levelSevenMediumAsteroidExplosionGreen",
-    "levels/LevelSeven/explode3.png",
-    { frameWidth: 128, frameHeight: 128 }
+    "levels/LevelSeven/explode3Center.png",
+    { frameWidth: 128, frameHeight: 127 }
   );
   this.load.spritesheet(
     "levelSevenMediumAsteroidExplosionPurple",
-    "levels/LevelSeven/explode4.png",
-    { frameWidth: 128, frameHeight: 128 }
+    "levels/LevelSeven/explode4Center.png",
+    { frameWidth: 128, frameHeight: 127 }
   );
   this.load.spritesheet(
     "levelSevenMediumAsteroidExplosionCyan",
-    "levels/LevelSeven/explode5.png",
-    { frameWidth: 128, frameHeight: 128 }
+    "levels/LevelSeven/explode5Center.png",
+    { frameWidth: 128, frameHeight: 127 }
   );
 
   // ------------------------------------
@@ -164,28 +201,28 @@ export default function preload() {
 
   this.load.spritesheet(
     "levelSevenSmallAsteroidExplosionYellow",
-    "levels/LevelSeven/smallexplode1.png",
-    { frameWidth: 128, frameHeight: 128 }
+    "levels/LevelSeven/smallExplode1Center.png",
+    { frameWidth: 128, frameHeight: 127 }
   );
   this.load.spritesheet(
     "levelSevenSmallAsteroidExplosionRed",
-    "levels/LevelSeven/smallexplode2.png",
-    { frameWidth: 128, frameHeight: 128 }
+    "levels/LevelSeven/smallExplode2Center.png",
+    { frameWidth: 128, frameHeight: 127 }
   );
   this.load.spritesheet(
     "levelSevenSmallAsteroidExplosionGreen",
-    "levels/LevelSeven/smallexplode3.png",
-    { frameWidth: 128, frameHeight: 128 }
+    "levels/LevelSeven/smallExplode3Center.png",
+    { frameWidth: 128, frameHeight: 127 }
   );
   this.load.spritesheet(
     "levelSevenSmallAsteroidExplosionPurple",
-    "levels/LevelSeven/smallexplode4.png",
-    { frameWidth: 128, frameHeight: 128 }
+    "levels/LevelSeven/smallExplode4Center.png",
+    { frameWidth: 128, frameHeight: 127 }
   );
   this.load.spritesheet(
     "levelSevenSmallAsteroidExplosionCyan",
-    "levels/LevelSeven/smallexplode5.png",
-    { frameWidth: 128, frameHeight: 128 }
+    "levels/LevelSeven/smallExplode5Center.png",
+    { frameWidth: 128, frameHeight: 127 }
   );
 
   // ------------------------------------
@@ -236,7 +273,7 @@ export default function preload() {
   );
   this.load.spritesheet(
     "levelNineShooterBullet",
-    "levels/LevelNine/basicAlienBulletRight.png",
+    "levels/LevelNine/basicAlienBulletRightUpdated.png",
     {
       frameHeight: 22,
       frameWidth: 34,

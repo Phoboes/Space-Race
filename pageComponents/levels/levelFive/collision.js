@@ -1,5 +1,4 @@
 import p from "../../globalVars";
-import utils from "../../utilityFunctions";
 import livesAndScore from "../../render/livesAndScore";
 
 const collision = {
@@ -8,6 +7,11 @@ const collision = {
     p.alienState.collisionHandler.collideCallback =
       collision.playerShotAlienHandler;
 
+    // Phaser gets iffy about overwriting physics, so we have to force its hand here
+    p.alienState.collisionHandler.collideCallback =
+      collision.playerShotAlienHandler;
+
+    // Adds collision detection between bullets and aliens.
     p.alienState.collisionHandler = p.game.physics.add.overlap(
       p.aliens,
       p.bullets,
@@ -15,28 +19,74 @@ const collision = {
       null,
       p.game
     );
+
+    // Adds collision detection between player and aliens.
+    p.game.physics.add.overlap(
+      p.aliens,
+      p.player,
+      collision.playerAlienCollisionHandler,
+      null,
+      p.game
+    );
+  },
+
+  playerAlienCollisionHandler: (player, alien) => {
+    //  When an alien hits the player, kill it and take a life
+    alien.destroy();
+
+    // remove a life from the player
+    if (p.playerState.lives > 0) {
+      p.playerState.lives--;
+    }
+
+    // Update the react state and the phaser text up the top of the screen
+    p.updateReactState({
+      ...p,
+    });
+    livesAndScore.update();
+
+    //AUDIO enemy is hit by bullet
+    const hitAudio = p.game.sound.add(p.audio.enemyHit);
+    hitAudio.play();
+    //  And create an explosion
+    collision.explosion.create(player);
   },
 
   playerShotAlienHandler: (alien, bullet) => {
     const { x, y } = alien;
-    // Get the alien's velocity *before* removing it from the scene
-    const velocity = alien.body.velocity;
+    //  When a bullet hits an alien we kill them both
     bullet.body.gameObject.disableBody(true, true);
     alien.destroy();
 
     // If it's a large asteroid, generate some fragments
-    if (alien.texture.key === "asteroidLargeLevelThree") {
-      // Rather than a fixed velocity, these children take the velocity angle from the parent asteroid
-      // With that velocity they branch out from it randomly between -40 and 40 degrees and set their trajectories based on that new angle
-      const firstChildAsteroid = p.aliens.create(x, y, "invader");
-      const firstChildVx = velocity.x + utils.random(-40, 40);
-      const firstChildVy = velocity.y + utils.random(-40, 40);
-      firstChildAsteroid.setVelocity(firstChildVx, firstChildVy);
+    if (alien.texture.key === "invaderLarge") {
+      // Create 2 children that split left and right from the parent
+      const leftSplitAlien = p.aliens.create(x - 10, y).setVisible(false);
+      const rightSplitAlien = p.aliens.create(x + 10, y).setVisible(false);
 
-      const secondChildAsteroid = p.aliens.create(x, y, "invader");
-      const secondChildVx = velocity.x + utils.random(-40, 40);
-      const secondChildVy = velocity.y + utils.random(-40, 40);
-      secondChildAsteroid.setVelocity(secondChildVx, secondChildVy);
+      // Create the animation for the children
+      p.game.anims.create({
+        key: "invaderSmall",
+        frames: p.game.anims.generateFrameNumbers("invaderSmall", {
+          start: 0,
+          end: 1,
+        }),
+        frameRate: 3,
+        repeat: -1,
+      });
+
+      // Once the explosion is done, play the animation
+      p.game.time.addEvent({
+        delay: 200,
+        callback: () => {
+          leftSplitAlien.play("invaderSmall").setVisible(true);
+          rightSplitAlien.play("invaderSmall").setVisible(true);
+          leftSplitAlien.body.velocity.y = 60;
+          leftSplitAlien.body.velocity.x = -10;
+          rightSplitAlien.body.velocity.y = 60;
+          rightSplitAlien.body.velocity.x = 10;
+        },
+      });
     }
 
     //AUDIO enemy is hit by bullet
@@ -80,12 +130,12 @@ const collision = {
       // If the animation hasn't been created, create it; prevents duplicate creations
       if (collision.explosion.animation === null) {
         collision.explosion.animation = p.game.anims.create({
-          key: "kaboom",
-          frames: p.game.anims.generateFrameNumbers("kaboom", {
+          key: "levelThreeKaboom",
+          frames: p.game.anims.generateFrameNumbers("levelThreeKaboom", {
             start: 0,
-            end: 15,
+            end: 3,
           }),
-          frameRate: 25,
+          frameRate: 8,
           repeat: 0,
         });
       }
@@ -93,7 +143,7 @@ const collision = {
       //  Place the explosion, play the animation, hide it again.
       collision.explosion.sprite.setPosition(x, y);
       collision.explosion.sprite.setVisible(true);
-      collision.explosion.sprite.play("kaboom");
+      collision.explosion.sprite.play("levelThreeKaboom");
       //   Once the animation finishes, remove it from the scene
       collision.explosion.sprite.on("animationcomplete", () => {
         collision.explosion.sprite.setVisible(false);

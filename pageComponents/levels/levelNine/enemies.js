@@ -64,7 +64,7 @@ const enemy = {
   },
 
   // Sets all the alien waves
-  populate: (game) => {
+  populate: () => {
     // Allows the update function for seeking behavior to be accessed by game update calls
     p.enemies.update = enemy.update;
 

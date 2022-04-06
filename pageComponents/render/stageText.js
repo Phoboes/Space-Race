@@ -31,17 +31,22 @@ const stageText = {
     },
     two: {
       endText: () => {
-        return p.game.add.text(
-          250,
-          80,
-          "Like Chumbawumba said: I get knocked down, I get up again... or something. Anyway, now you can go up and down.",
-          {
+        return p.game.add.text(250, 80, "We're breaking up!", {
+          fontFamily: "Arial",
+          color: "black",
+          fontSize: "3em",
+          align: "center",
+        });
+      },
+      three: {
+        endText: () => {
+          return p.game.add.text(250, 80, "Cleared for take off!", {
             fontFamily: "Arial",
             color: "black",
             fontSize: "3em",
             align: "center",
-          }
-        );
+          });
+        },
       },
     },
   },

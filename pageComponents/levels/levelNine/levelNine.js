@@ -6,7 +6,7 @@ import livesAndScore from "../../render/livesAndScore";
 
 // Level 9 is a new backdrop, seekers and the first aliens that shoot back
 const levelNine = {
-  init: (game) => {
+  init: () => {
     // game.add.image(0, 0, "levelNineBackground").setOrigin(0, 0);
 
     // -------------------------------------
@@ -19,7 +19,7 @@ const levelNine = {
     p.player = null;
 
     //  Add the player to the game
-    p.player = game.physics.add.sprite(x, y);
+    p.player = p.game.physics.add.sprite(x, y);
     // Angle it to the old ship's angle
     p.player.angle = angle;
     // and prevent it falling through the world
@@ -48,9 +48,9 @@ const levelNine = {
     });
 
     // Add the player animations and start them off.
-    p.playerAnimation = game.anims.create({
+    p.playerAnimation = p.game.anims.create({
       key: "levelNineShipAnimation",
-      frames: game.anims.generateFrameNumbers("levelNineShip", {
+      frames: p.game.anims.generateFrameNumbers("levelNineShip", {
         start: 1,
         end: 2,
       }),

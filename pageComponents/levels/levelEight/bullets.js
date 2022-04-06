@@ -81,7 +81,7 @@ const bullets = {
         start: 0,
         end: 1,
       }),
-      frameRate: 4,
+      frameRate: 10,
       repeat: -1,
     });
 

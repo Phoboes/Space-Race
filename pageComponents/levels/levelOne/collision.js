@@ -48,19 +48,14 @@ const collision = {
     create: (target) => {
       const { x, y } = target;
       // If the explosion group hasn't been created for this level, do so
-      // if (collision.explosion.sprite === null) {
-      console.log("No explosion yet");
       collision.explosion.sprite = p.game.physics.add.sprite({
         x: -100,
         y: -100,
       });
       // And hide it offscreen until needed
       collision.explosion.sprite.setVisible(false);
-      // }
 
-      // If the animation hasn't been created, create it; prevents duplicate creations
-      // if (collision.explosion.animation === null) {
-      console.log("no animation");
+      // If the animation hasn't been created, create it
       collision.explosion.animation = p.game.anims.create({
         key: "kaboom",
         frames: p.game.anims.generateFrameNumbers("kaboom", {
@@ -70,10 +65,6 @@ const collision = {
         frameRate: 25,
         repeat: 0,
       });
-      // }
-
-      console.log("Animations exist");
-      console.log(collision.explosion);
 
       //  Place the explosion, play the animation, hide it again.
       collision.explosion.sprite.setPosition(x, y);

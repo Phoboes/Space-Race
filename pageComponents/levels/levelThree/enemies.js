@@ -8,6 +8,18 @@ const enemy = {
     for (let i = 1; i <= 3; i++) {
       const alien = p.aliens.create(i * 200, -50, "asteroidLargeLevelThree");
       // Now the aliens will fall slowly towards the player.
+
+      p.game.anims.create({
+        key: "invaderLarge",
+        frames: p.game.anims.generateFrameNumbers("invaderLarge", {
+          start: 0,
+          end: 1,
+        }),
+        frameRate: 3,
+        repeat: -1,
+      });
+      alien.play("invaderLarge");
+      // Now the aliens will fall slowly towards the player.
       alien.body.velocity.y = 60;
     }
     // Do it again after a delay.
@@ -21,6 +33,17 @@ const enemy = {
             "asteroidLargeLevelThree"
           );
           // Now the aliens will fall slowly towards the player.
+
+          p.game.anims.create({
+            key: "invaderLarge",
+            frames: p.game.anims.generateFrameNumbers("invaderLarge", {
+              start: 0,
+              end: 1,
+            }),
+            frameRate: 3,
+            repeat: -1,
+          });
+          alien.play("invaderLarge");
 
           alien.body.velocity.y = 60;
         }
