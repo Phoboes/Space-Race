@@ -68,7 +68,7 @@ const bullets = {
             start: 0,
             end: 1,
           }),
-          frameRate: 8,
+          frameRate: 4,
           repeat: -1,
         });
         bullet.play("levelNineShooterBulletShot");
@@ -81,7 +81,7 @@ const bullets = {
           x,
           y,
           angle * Phaser.Math.DEG_TO_RAD,
-          40
+          30
         );
 
         // Fires the bullet in its new direction

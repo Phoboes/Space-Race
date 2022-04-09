@@ -41,7 +41,7 @@ const levelEight = {
     // This causes a delay to allow the level to set up and allow aliens to spawn
     p.gameState.canAdvanceLevel = false;
     p.game.time.addEvent({
-      delay: 5000,
+      delay: 500,
       callback: () => {
         p.gameState.canAdvanceLevel = true;
       },

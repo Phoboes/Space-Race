@@ -24,7 +24,7 @@ const levelThree = {
     p.player.setCollideWorldBounds(true);
     p.player.body.allowGravity = false;
 
-    enemies.populate();
+    // enemies.populate();
     // Modifies the collision handler for large asteroids
     collision.enable();
 
@@ -34,7 +34,7 @@ const levelThree = {
     // This causes a delay to allow the level to set up and allow aliens to spawn
     p.gameState.canAdvanceLevel = false;
     p.game.time.addEvent({
-      delay: 5000,
+      delay: 500,
       callback: () => {
         p.gameState.canAdvanceLevel = true;
       },

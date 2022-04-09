@@ -265,10 +265,10 @@ export default function preload() {
   );
   this.load.spritesheet(
     "levelNineShooter",
-    "levels/LevelNine/basicAlienRight.png",
+    "levels/LevelNine/basicAlienRightAnimated.png",
     {
       frameHeight: 43,
-      frameWidth: 61,
+      frameWidth: 62,
     }
   );
   this.load.spritesheet(

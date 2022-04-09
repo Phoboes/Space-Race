@@ -29,7 +29,7 @@ const enemy = {
           start: 0,
           end: 2,
         }),
-        frameRate: 1,
+        frameRate: 8,
         repeat: -1,
       });
 
