@@ -7,7 +7,7 @@ import livesAndScore from "../../render/livesAndScore";
 // Level 8 is another graphics upgrade and the introduction of 'seekers', enemies who actively chase the player to kamikaze
 const levelEight = {
   init: () => {
-    // p.game.add.image(0, 0, "levelEightBackground").setOrigin(0, 0);
+    p.game.add.image(0, 0, "levelEightBackground").setOrigin(0, 0);
 
     // -------------------------------------
     // Reset the player for new collisions

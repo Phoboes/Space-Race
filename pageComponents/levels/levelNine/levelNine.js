@@ -7,7 +7,7 @@ import livesAndScore from "../../render/livesAndScore";
 // Level 9 is a new backdrop, seekers and the first aliens that shoot back
 const levelNine = {
   init: () => {
-    // game.add.image(0, 0, "levelNineBackground").setOrigin(0, 0);
+    p.game.add.image(0, 0, "levelNineBackground").setOrigin(0, 0);
 
     // -------------------------------------
     // Reset the player for new collisions

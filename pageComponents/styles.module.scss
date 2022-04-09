@@ -1,3 +1,15 @@
+@font-face {
+    font-family: "Orbitron";
+    src: url("/fonts/Orbitron/Orbitron-VariableFont_wght.ttf"),
+    }
+
+    @font-face {
+        font-family: "Press_Start_2P";
+        src: url("/fonts/Press_Start_2P/PressStart2P-Regular.ttf"),
+        }
+    
+
+    
 .contentWrapper {
     text-align: center;
     transition: all 2s;
@@ -8,6 +20,11 @@
     canvas {
         border: 1px solid darkgrey;
     }
+
+.textLoader {
+    font-family: Orbitron;
+    font-family: Press_Start_2P
+}
 }
 
 .level-1,
@@ -39,4 +56,6 @@
     .textWrapper {
         color: darkgrey;
     }
+
 }
+

@@ -7,41 +7,46 @@ const stageText = {
         if (p.textState.levelText === null) {
           p.textState.levelText = {};
           p.textState.levelText.styles = {
-            fontFamily: "Arial",
+            fontFamily: "Press_Start_2P",
             color: "black",
-            fontSize: "3em",
+            fontSize: "2em",
           };
         }
 
         return p.game.add.text(
-          250,
+          220,
           80,
           "Press Space to begin.",
-          p.textState.levelText.styles
+          {
+            fontFamily: "Press_Start_2P",
+            color: "black",
+            fontSize: "2em",
+            align: "center",
+          }
         );
       },
       endText: () => {
-        return p.game.add.text(250, 80, "Nice! Now try left and right!", {
-          fontFamily: "Arial",
+        return p.game.add.text(200, 80, "Level Complete. \n\n\n Now try left and right. \n\n\n(Fire to advance)", {
+          fontFamily: "Press_Start_2P",
           color: "black",
-          fontSize: "3em",
+          fontSize: "2em",
           align: "center",
         });
       },
     },
     two: {
       endText: () => {
-        return p.game.add.text(250, 80, "We're breaking up!", {
-          fontFamily: "Arial",
+        return p.game.add.text(200, 80, "We're breaking up!", {
+          fontFamily: "Press_Start_2P",
           color: "black",
-          fontSize: "3em",
+          fontSize: "2em",
           align: "center",
         });
       },
       three: {
         endText: () => {
           return p.game.add.text(250, 80, "Cleared for take off!", {
-            fontFamily: "Arial",
+            fontFamily: "Press_Start_2P",
             color: "black",
             fontSize: "3em",
             align: "center",

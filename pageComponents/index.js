@@ -46,7 +46,7 @@ const index = (props) => {
     }
   }, [browserDetected]);
 
-  const content = game === null ? <p>"Loading..."</p> : null;
+  const content = game === null ? <p>Loading...</p> : null;
 
   if (gameState === null) {
     setGameState(p);
@@ -59,6 +59,8 @@ const index = (props) => {
       }`}
       id="container"
     >
+    {/* This element needs to exist to force css fonts to load before Phaser, which then allows Phaser to use them from the get-go. */}
+    <span className={styles.textLoader}/>
       {content}
       <div className={styles.textWrapper}>
         {/* <span>Score: {gameState.playerState.score}</span> */}

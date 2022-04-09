@@ -6,9 +6,9 @@ const livesAndScore = {
     if (p.textState.playerData === null) {
       p.textState.playerData = {};
       p.textState.playerData.styles = {
-        fontFamily: "Arial",
+        fontFamily: "Press_Start_2P",
         color: "black",
-        fontSize: "2em",
+        fontSize: "1.5em",
       };
 
       const score = p.game.add.text(
@@ -19,7 +19,7 @@ const livesAndScore = {
       );
 
       const lives = p.game.add.text(
-        705,
+        660,
         30,
         `Lives: ${p.playerState.lives}`,
         p.textState.playerData.styles

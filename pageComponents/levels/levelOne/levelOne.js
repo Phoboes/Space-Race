@@ -33,6 +33,12 @@ const levelOne = {
     p.gameState.cursorKeys = p.game.input.keyboard.addKeys(
       "W,A,S,D,up,left,right,down,space"
     );
+        p.game.time.addEvent({
+      delay: 500,
+      callback: () => {
+        p.gameState.canAdvanceLevel = true;
+      },
+    });
   },
 };
 
