@@ -28,12 +28,13 @@ const levelOne = {
     enemies.create();
     bullets.create();
     collisions.enable();
+    console.log(p);
 
     // Keyboard detect
     p.gameState.cursorKeys = p.game.input.keyboard.addKeys(
       "W,A,S,D,up,left,right,down,space"
     );
-        p.game.time.addEvent({
+    p.game.time.addEvent({
       delay: 500,
       callback: () => {
         p.gameState.canAdvanceLevel = true;

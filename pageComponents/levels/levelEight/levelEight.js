@@ -36,6 +36,23 @@ const levelEight = {
     p.audio = { ...p.audio, playerShot: "shortPlayerShot8" };
 
     // Render and update styles of the lives and score att he top of the screen
+    p.textState.playerData.styles = {
+      ...p.textState.playerData.styles,
+      color: "rgb(255,255,255)",
+      fontWeight: "bold",
+      fontFamily: "Orbitron",
+      fontSize: "2em",
+    };
+
+    p.textState.levelText.styles = {
+      ...p.textState.levelText.styles,
+      color: "rgb(255,255,255)",
+      fontWeight: "bold",
+      fontFamily: "Orbitron",
+      fontSize: "3em",
+    };
+
+    // Render and update styles of the lives and score at the top of the screen
     livesAndScore.update();
 
     // This causes a delay to allow the level to set up and allow aliens to spawn

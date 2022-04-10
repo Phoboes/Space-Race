@@ -59,8 +59,10 @@ const index = (props) => {
       }`}
       id="container"
     >
-    {/* This element needs to exist to force css fonts to load before Phaser, which then allows Phaser to use them from the get-go. */}
-    <span className={styles.textLoader}/>
+      {/* This element needs to exist to force css fonts to load before Phaser, which then allows Phaser to use them from the get-go. */}
+      <span className={styles.textLoader2p} />
+      <span className={styles.orbit} />
+
       {content}
       <div className={styles.textWrapper}>
         {/* <span>Score: {gameState.playerState.score}</span> */}

@@ -31,10 +31,12 @@ const livesAndScore = {
     // Set the text values to the current scores/lives and make sure the correct styles are applied for the level
     p.textState.playerData.texts.lives
       .setText(`Lives: ${p.playerState.lives}`)
-      .setStyle(p.textState.playerData.styles);
+      .setStyle(p.textState.playerData.styles)
+      .setDepth(10);
     p.textState.playerData.texts.score
       .setText(`Score: ${p.playerState.score}`)
-      .setStyle(p.textState.playerData.styles);
+      .setStyle(p.textState.playerData.styles)
+      .setDepth(10);
   },
 };
 

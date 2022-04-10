@@ -27,29 +27,48 @@ export default function update() {
         !p.gameState.levelPending &&
         p.gameState.canAdvanceLevel
       ) {
-        // todo: update ships here
-        p.gameState.levelPending = true;
+        // todo: update ships here -- maybe
+        p.gameState.canAdvanceLevel = false;
         p.gameState.stageText = textHandler(p.gameState.level);
-        p.gameState.level++;
+        p.game.time.addEvent({
+          delay: 1000,
+          callback: () => {
+            p.gameState.levelPending = true;
+            p.gameState.canAdvanceLevel = true;
+            p.gameState.level++;
+          },
+        });
       }
     }
   } else {
     controlsHandler.space();
     if (p.playerState.alive === true && p.playerState.lives <= 0) {
+      // If the player has no lives left, but is still 'alive', begin the process of freezing the game and changing the player's status to dead
       p.playerState.alive = false;
+      // Add a slight delay to freeze the game mid explosion animation on the player
       p.game.time.addEvent({
         delay: 100,
         callback: () => {
-          const endText = p.game.add.text(270, 250, "Game Over", {
-            ...p.textState.levelText.styles,
-            align: "center",
-            fontSize: "5em",
-            fontWeight: "bold",
-          });
+          // Render "Game Over"
+          const endText = p.game.add
+            .text(400, 300, "Game Over", {
+              ...p.textState.levelText.styles,
+              align: "center",
+              fontSize: "5em",
+              fontWeight: "bold",
+            })
+            .setOrigin(0.5);
           p.gameState.stageText = endText;
+          // Freeze all animations
           p.game.physics.pause();
           p.game.anims.pauseAll();
           p.playerState.canFire = false;
+          // Remove all pending alien spawn timers
+          p.game.time.removeAllEvents();
+          // If aliens are alive, freeze them all
+          if (p.aliens.children.entries.length > 0) {
+            p.aliens.setActive(false);
+          }
         },
       });
     }

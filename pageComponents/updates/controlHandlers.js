@@ -11,7 +11,7 @@ const controlsHandler = {
       !p.gameState.levelPending
     ) {
       // Destroy any level text that may remain
-      if (p.gameState.stageText) {
+      if (p.gameState.stageText && p.gameState.canAdvanceLevel) {
         p.gameState.stageText.destroy();
         p.gameState.stageText = null;
       }
@@ -37,13 +37,17 @@ const controlsHandler = {
       p.gameState.cursorKeys.space._justDown &&
       p.playerState.lives === 0
     ) {
+      // If the spacebar is hit and the player is dead:
+      // -- Create a blank initial game state
+      // -- Assign this phaser instance to the new blank slate
+      // -- Update react's states to this new blank slate
+      // -- Resume animations and physics that are paused in Update when the player dies
       const newGame = setInitialState();
       p = { ...newGame, game: p.game, updateReactState: p.updateReactState };
       p.updateReactState(p);
       p.game.scene.restart();
       p.game.physics.resume();
       p.game.anims.resumeAll();
-      // initLevel(p.game);
     }
   },
 

@@ -59,6 +59,13 @@ const levelSeven = {
       color: "rgb(255,255,0)",
       fontWeight: "bold",
     };
+
+    p.textState.levelText.styles = {
+      ...p.textState.levelText.styles,
+      color: "rgb(255,255,0)",
+      fontWeight: "bold",
+    };
+
     livesAndScore.update();
 
     // This causes a delay to allow the level to set up and allow aliens to spawn

@@ -46,21 +46,24 @@ const enemy = {
       const timer = p.game.time.addEvent({
         delay: 5000,
         callback: () => {
-          // Get the current x/y, not the x/y provided when the parent was created
-          const currentXY = missileLauncher.getCenter();
-          const missile = enemy.create.missile({
-            x: currentXY.x,
-            y: currentXY.y,
-          });
-          // Offset the spawn location 40 pixels out front and somewhere between -40 and 40 degress
-          Phaser.Math.RotateAroundDistance(
-            missile,
-            currentXY.x,
-            currentXY.y,
-            (missileLauncher.angle + utils.random(-40, 40)) *
-              Phaser.Math.DEG_TO_RAD,
-            40
-          );
+          // Prevents firing from its previous position after destruction or if the game is over
+          if (missileLauncher.active && p.playerState.alive) {
+            // Get the current x/y, not the x/y provided when the parent was created
+            const currentXY = missileLauncher.getCenter();
+            const missile = enemy.create.missile({
+              x: currentXY.x,
+              y: currentXY.y,
+            });
+            // Offset the spawn location 40 pixels out front and somewhere between -40 and 40 degress
+            Phaser.Math.RotateAroundDistance(
+              missile,
+              currentXY.x,
+              currentXY.y,
+              (missileLauncher.angle + utils.random(-40, 40)) *
+                Phaser.Math.DEG_TO_RAD,
+              40
+            );
+          }
         },
         repeat: -1,
       });
@@ -120,8 +123,8 @@ const enemy = {
       const timer = p.game.time.addEvent({
         delay: 5000,
         callback: () => {
-          // Prevents firing from its previous position after destruction
-          if (shooter.active) {
+          // Prevents firing from its previous position after destruction or if the game is over
+          if (shooter.active && p.playerState.alive) {
             bullets.alien.create.shooterBullet(shooter);
           }
         },
@@ -168,8 +171,8 @@ const enemy = {
       const timer = p.game.time.addEvent({
         delay: 5000,
         callback: () => {
-          // Prevents firing from its previous position after destruction
-          if (shotgunner.active) {
+          // Prevents firing from its previous position after destruction or if the game is over
+          if (shotgunner.active && p.playerState.alive) {
             bullets.alien.create.shotgunBullets(shotgunner);
           }
         },

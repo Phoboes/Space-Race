@@ -120,8 +120,8 @@ const enemy = {
       const timer = p.game.time.addEvent({
         delay: 5000,
         callback: () => {
-          // Prevents firing from its previous position after destruction
-          if (shooter.active) {
+          // Prevents firing from its previous position after destruction or if the game is over
+          if (shooter.active && p.playerState.alive) {
             bullets.alien.create.shooterBullet(shooter);
           }
         },
@@ -168,7 +168,7 @@ const enemy = {
       const timer = p.game.time.addEvent({
         delay: 5000,
         callback: () => {
-          // Prevents firing from its previous position after destruction
+          // Prevents firing from its previous position after destruction or if the game is over
           if (shotgunner.active) {
             bullets.alien.create.shotgunBullets(shotgunner);
           }

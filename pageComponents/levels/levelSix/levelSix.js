@@ -53,11 +53,17 @@ const levelSix = {
     // Set up the audio
     p.audio = { ...p.audio, playerShot: "babyPew" };
 
-    // Render and update styles of the lives and score at the top of the screen
+    // Render and update styles of the lives and score at the top of the screen and change the font to white for the black backdrop
     p.textState.playerData.styles = {
       ...p.textState.playerData.styles,
       color: "rgb(255,255,255)",
     };
+
+    p.textState.levelText.styles = {
+      ...p.textState.levelText.styles,
+      color: "rgb(255,255,255)",
+    };
+
     livesAndScore.update();
     // Trigger css changes in react
     p.updateReactState({
