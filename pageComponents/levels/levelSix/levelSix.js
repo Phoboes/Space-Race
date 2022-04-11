@@ -31,7 +31,7 @@ const levelSix = {
 
     // Add the ship animations
     p.playerAnimation = p.game.anims.create({
-      key: "levelSevenShipAnimation",
+      key: "levelSixShipAnimation",
       frames: p.game.anims.generateFrameNumbers("levelSixShip", {
         start: 1,
         end: 2,
