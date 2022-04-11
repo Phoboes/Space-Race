@@ -7,7 +7,7 @@ import livesAndScore from "../../render/livesAndScore";
 
 const levelFive = {
   init: () => {
-    // enemies.populate();
+    enemies.populate();
 
     // Render and update styles of the lives and score att he top of the screen
     livesAndScore.update();
@@ -15,7 +15,7 @@ const levelFive = {
     // This causes a delay to allow the level to set up and allow aliens to spawn
     p.gameState.canAdvanceLevel = false;
     p.game.time.addEvent({
-      delay: 500,
+      delay: 5000,
       callback: () => {
         p.gameState.canAdvanceLevel = true;
       },

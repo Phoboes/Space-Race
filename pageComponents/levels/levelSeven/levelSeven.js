@@ -44,7 +44,7 @@ const levelSeven = {
 
     // Set up the game
     bullets.create();
-    // enemies.populate();
+    enemies.populate();
     collisions.enable();
 
     // Update the game audio files
@@ -71,7 +71,7 @@ const levelSeven = {
     // This causes a delay to allow the level to set up and allow aliens to spawn
     p.gameState.canAdvanceLevel = false;
     p.game.time.addEvent({
-      delay: 500,
+      delay: 5000,
       callback: () => {
         p.gameState.canAdvanceLevel = true;
       },

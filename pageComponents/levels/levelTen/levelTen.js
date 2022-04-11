@@ -42,7 +42,7 @@ const levelTen = {
     p.gameState.canAdvanceLevel = false;
     // todo: 5000, reset this once done testing
     p.game.time.addEvent({
-      delay: 5000,
+      delay: 30000,
       callback: () => {
         p.gameState.canAdvanceLevel = true;
       },

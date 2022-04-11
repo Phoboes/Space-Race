@@ -5,7 +5,7 @@ import livesAndScore from "../../render/livesAndScore";
 
 const levelTwo = {
   init: () => {
-    // enemies.populate();
+    enemies.populate();
     // Enables collision between player and an alien
     collisions.enable();
 
@@ -16,7 +16,7 @@ const levelTwo = {
     p.gameState.canAdvanceLevel = false;
 
     p.game.time.addEvent({
-      delay: 500,
+      delay: 5000,
       callback: () => {
         p.gameState.canAdvanceLevel = true;
       },

@@ -304,8 +304,8 @@ export default function preload() {
 
   this.load.spritesheet(
     "levelTenShotgunShip",
-    "levels/LevelTen/basicalienShotgunShipRight.png",
-    { frameHeight: 54, frameWidth: 40 }
+    "levels/LevelTen/shotgunnerRightAnimated.png",
+    { frameHeight: 54, frameWidth: 54 }
   );
   // this.load.spritesheet('levelTenBasicAlien', 'levels/LevelTen/basicAlien.png', 43, 63);
   // this.load.spritesheet('levelTenBasicAlienBullet', 'levels/LevelTen/basicAlienBullet.png', 23.333, 39);

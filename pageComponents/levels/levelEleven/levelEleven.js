@@ -32,7 +32,7 @@ const levelEleven = {
     collisions.enable();
 
     // Set up the audio
-    p.audio = { ...p.audio, playerShot: "laserPew" };
+    // p.audio = { ...p.audio, playerShot: "laserPew" };
 
     // Render and update styles of the lives and score att he top of the screen
     livesAndScore.update();

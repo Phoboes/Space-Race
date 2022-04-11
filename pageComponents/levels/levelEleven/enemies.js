@@ -140,9 +140,9 @@ const enemy = {
         key: "levelTenShotgunner",
         frames: p.game.anims.generateFrameNumbers("levelTenShotgunShip", {
           start: 0,
-          end: 2,
+          end: 3,
         }),
-        frameRate: 1,
+        frameRate: 12,
         repeat: -1,
       });
 
@@ -223,7 +223,7 @@ const enemy = {
     p.game.time.addEvent({
       delay: 7000,
       callback: () => {
-        enemy.spawnRandom(utils.random(-50, 850), 750);
+        enemy.spawnRandom(utils.random(-50, 850), 700);
       },
       repeat: utils.random(1, 4),
     });
