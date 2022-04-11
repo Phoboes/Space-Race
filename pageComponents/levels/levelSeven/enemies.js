@@ -43,7 +43,7 @@ const enemy = {
     p.game.time.addEvent({
       delay: 4000,
       callback: () => {
-        enemy.createSprite({
+        enemy.create({
           game: p.game,
           x: utils.random(50, 750),
           y: -50,
@@ -60,7 +60,7 @@ const enemy = {
     p.game.time.addEvent({
       delay: 4000,
       callback: () => {
-        enemy.createSprite({
+        enemy.create({
           game: p.game,
           x: utils.random(50, 750),
           y: 800,
@@ -77,7 +77,7 @@ const enemy = {
     p.game.time.addEvent({
       delay: 5000,
       callback: () => {
-        enemy.createSprite({
+        enemy.create({
           game: p.game,
           x: 800,
           y: utils.random(50, 750),
@@ -93,7 +93,7 @@ const enemy = {
     p.game.time.addEvent({
       delay: 3500,
       callback: () => {
-        enemy.createSprite({
+        enemy.create({
           game: p.game,
           x: -50,
           y: utils.random(50, 750),
@@ -113,7 +113,7 @@ const enemy = {
     p.game.time.addEvent({
       delay: 3000,
       callback: () => {
-        enemy.createSprite({
+        enemy.create({
           game: p.game,
           x: utils.random(50, 750),
           y: -50,
@@ -130,7 +130,7 @@ const enemy = {
     p.game.time.addEvent({
       delay: 2000,
       callback: () => {
-        enemy.createSprite({
+        enemy.create({
           game: p.game,
           x: utils.random(50, 750),
           y: 800,
@@ -147,7 +147,7 @@ const enemy = {
     p.game.time.addEvent({
       delay: 2700,
       callback: () => {
-        enemy.createSprite({
+        enemy.create({
           game: p.game,
           x: 800,
           y: utils.random(50, 750),
@@ -164,7 +164,7 @@ const enemy = {
     p.game.time.addEvent({
       delay: 4000,
       callback: () => {
-        enemy.createSprite({
+        enemy.create({
           game: p.game,
           x: -50,
           y: utils.random(50, 750),
