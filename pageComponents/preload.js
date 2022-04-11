@@ -89,7 +89,7 @@ export default function preload() {
   );
 
   this.load.image("levelSixBullet", "levels/LevelSix/bullet2.png");
-  this.load.spritesheet("levelSixShip", "levels/levelSix/shipUpdated.png", {
+  this.load.spritesheet("levelSixShip", "levels/LevelSix/shipUpdated.png", {
     frameWidth: 37,
     frameHeight: 35,
   });
@@ -134,7 +134,7 @@ export default function preload() {
 
   this.load.spritesheet(
     "levelSevenLargeAsteroidExplosionYellow",
-    "levels/LevelSeven/bigexplode1Center.png",
+    "levels/LevelSeven/bigExplode1Center.png",
     { frameWidth: 128, frameHeight: 127 }
   );
   this.load.spritesheet(
@@ -385,7 +385,7 @@ export default function preload() {
 
   this.load.audio("gameOver", "/audio/gameOver.wav");
 
-  this.load.audio("gameover8", "/audio/gameover8.wav");
+  this.load.audio("gameOver8", "/audio/gameOver8.wav");
 
   this.load.audio("pacManDeath", "/audio/pacManDeath.wav");
 }
