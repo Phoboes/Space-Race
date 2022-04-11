@@ -5,7 +5,7 @@ import livesAndScore from "../../render/livesAndScore";
 
 const levelTwo = {
   init: () => {
-    enemies.populate();
+    // enemies.populate();
     // Enables collision between player and an alien
     collisions.enable();
 

@@ -7,7 +7,7 @@ import livesAndScore from "../../render/livesAndScore";
 
 const levelFive = {
   init: () => {
-    enemies.populate();
+    // enemies.populate();
 
     // Render and update styles of the lives and score att he top of the screen
     livesAndScore.update();

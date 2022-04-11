@@ -64,12 +64,8 @@ export default function preload() {
   // ------------------------------------
   //Preloaded images for level 5:
   // ------------------------------------
-  // this.load.spritesheet("levelSixShip", "levels/levelSix/shipUpdated.png", {
-  //   frameWidth: 37,
-  //   frameHeight: 35,
-  // });
-  // this.load.image("shipLevel5", "levels/LevelFive/ship.png");
-  // this.load.image("levelFiveBullet", "levels/LevelFive/bullet2.png");
+
+  // Nil
 
   // ------------------------------------
   // Preloaded images for level 6:
@@ -92,10 +88,7 @@ export default function preload() {
     }
   );
 
-  // asteroidSmallsprite.png;
-  // this.load.image("levelSixAsteroidSmall", "levels/LevelSix/asteroidSmall.png");
   this.load.image("levelSixBullet", "levels/LevelSix/bullet2.png");
-  // this.load.image("shipLevel6", "levels/LevelSix/ship.png");
   this.load.spritesheet("levelSixShip", "levels/levelSix/shipUpdated.png", {
     frameWidth: 37,
     frameHeight: 35,

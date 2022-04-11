@@ -27,7 +27,7 @@ const levelFour = {
     p.player.setCollideWorldBounds(true);
     p.player.body.allowGravity = false;
 
-    enemies.populate();
+    // enemies.populate();
     bullets.create();
     collision.enable();
 

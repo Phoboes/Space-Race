@@ -24,7 +24,7 @@ const levelThree = {
     p.player.setCollideWorldBounds(true);
     p.player.body.allowGravity = false;
 
-    enemies.populate();
+    // enemies.populate();
     // Modifies the collision handler for large asteroids
     collision.enable();
 
