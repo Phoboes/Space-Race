@@ -67,7 +67,7 @@ const collision = {
       });
       livesAndScore.update();
 
-      const hitAudio = p.game.sound.add("enemyHit");
+      const hitAudio = p.game.sound.add(p.audio.enemyHit);
       hitAudio.play();
       collision.explosion.create(bullet);
       bullet.destroy();
@@ -85,7 +85,7 @@ const collision = {
 
       //AUDIO enemy is hit by bullet
 
-      const hitAudio = this.sound.add("enemyHit");
+      const hitAudio = p.game.sound.add(p.audio.enemyHit);
       hitAudio.play();
       if (!alien.texture.key.includes("MissileSeeker")) {
         //  Increase the score,

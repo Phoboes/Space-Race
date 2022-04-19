@@ -300,8 +300,6 @@ export default function preload() {
     "levels/LevelTen/shotgunnerRightAnimated.png",
     { frameHeight: 54, frameWidth: 54 }
   );
-  // this.load.spritesheet('levelTenBasicAlien', 'levels/LevelTen/basicAlien.png', 43, 63);
-  // this.load.spritesheet('levelTenBasicAlienBullet', 'levels/LevelTen/basicAlienBullet.png', 23.333, 39);
   this.load.spritesheet(
     "levelTenAlienShotgunBullet",
     "levels/LevelTen/basicAlienShotgun.png",
@@ -324,8 +322,24 @@ export default function preload() {
     "levels/LevelTen/bulletSpriteRight.png",
     { frameHeight: 5, frameWidth: 25 }
   );
-  // this.load.spritesheet('levelTenShip', 'levels/LevelTen/ship.png', 35, 69);
-  // this.load.spritesheet('levelTenBackground', 'levels/LevelTen/background.png');
+
+  // ------------------------------------
+  // Preloaded images for level 12
+  // ------------------------------------
+
+  this.load.spritesheet("levelTwelveShip", "levels/LevelTwelve/shipRight.png", {
+    frameHeight: 55,
+    frameWidth: 65,
+  });
+
+  this.load.spritesheet(
+    "levelTwelvePlayerBullet",
+    "levels/LevelTwelve/bulletRight.png",
+    {
+      frameHeight: 28,
+      frameWidth: 40,
+    }
+  );
 
   // ------------------------------------
   // AUDIO PRELOADS

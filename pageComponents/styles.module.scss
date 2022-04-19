@@ -10,20 +10,111 @@
 
 .contentWrapper {
     text-align: center;
-    transition: all 2s;
-    height: 100%;
+    transition: all 1s;
+    height: 100vh;
     padding: 2em;
     background-color: black;
     color: white;
+    min-width: 850px;
     canvas {
         border: 1px solid darkgrey;
     }
 
-    .textLoader2p {
+    // Used to get fonts into the DOM for phaser to access immediately rather than fetching
+    .textLoader2p,
+    .loader {
         font-family: Press_Start_2P;
+        color: black;
     }
+
     .textLoaderOrbitron {
         font-family: Orbitron;
+    }
+
+    @keyframes loader {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    .loader {
+        width: 100%;
+        .elipses {
+            opacity: 0;
+            animation: loader 1s infinite;
+        }
+    }
+
+    @keyframes fade-in {
+        0% {
+            opacity: 0;
+        }
+
+        90% {
+            opacity: 0;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+
+    .pageHeader {
+        overflow: none;
+
+        span {
+            opacity: 0;
+            font-size: 2em;
+            padding: 0;
+            margin: 0 0 0.5em 0;
+            font-family: Press_Start_2P;
+            color: black;
+            &:nth-child(1) {
+                animation: fade-in 0.3s forwards;
+                animation-delay: 0.2s;
+            }
+            &:nth-child(2) {
+                animation: fade-in 0.3s forwards;
+                animation-delay: 0.4s;
+            }
+            &:nth-child(3) {
+                animation: fade-in 0.3s forwards;
+                animation-delay: 0.6s;
+            }
+            &:nth-child(4) {
+                animation: fade-in 0.3s forwards;
+                animation-delay: 0.8s;
+            }
+            &:nth-child(5) {
+                animation: fade-in 0.3s forwards;
+                animation-delay: 1s;
+            }
+
+            &:nth-child(7) {
+                animation: fade-in 0.3s forwards;
+
+                animation-delay: 1.2s;
+            }
+            &:nth-child(8) {
+                animation: fade-in 0.3s forwards;
+
+                animation-delay: 1.4s;
+            }
+            &:nth-child(9) {
+                animation: fade-in 0.3s forwards;
+
+                animation-delay: 1.6s;
+            }
+            &:nth-child(10) {
+                animation: fade-in 0.3s forwards;
+
+                animation-delay: 1.8s;
+            }
+        }
     }
 }
 
@@ -39,6 +130,9 @@
 }
 
 .level-6 {
+    .pageHeader span {
+        color: white;
+    }
     background-color: black;
     canvas {
         border: 3px solid darkgrey;
@@ -50,10 +144,130 @@
 
 .level-7 {
     background-color: black;
+    .pageHeader {
+        span {
+            color: white;
+            &:nth-child(1) {
+                color: red;
+            }
+            &:nth-child(2) {
+                color: yellow;
+                transition-delay: 0.1s;
+            }
+            &:nth-child(3) {
+                color: green;
+                transition-delay: 0.2s;
+            }
+            &:nth-child(4) {
+                color: purple;
+                transition-delay: 0.3s;
+            }
+            &:nth-child(5) {
+                color: cyan;
+                transition-delay: 0.4s;
+            }
+
+            &:nth-child(7) {
+                color: red;
+                transition-delay: 0.5s;
+            }
+            &:nth-child(8) {
+                color: yellow;
+                transition-delay: 0.6s;
+            }
+            &:nth-child(9) {
+                color: green;
+                transition-delay: 0.7s;
+            }
+            &:nth-child(10) {
+                color: purple;
+                transition-delay: 0.8s;
+            }
+        }
+    }
+
     canvas {
         border: 3px solid yellow;
     }
     .textWrapper {
         color: darkgrey;
+    }
+}
+
+.level-8 {
+    background: rgb(39, 0, 69);
+    background: radial-gradient(circle, rgba(39, 0, 69, 1) 0%, rgba(0, 0, 0, 1) 100%);
+    .pageHeader {
+        span {
+            font-family: Orbitron;
+            color: white;
+            transition: all 1s;
+        }
+    }
+    canvas {
+        border: 0px solid transparent;
+        border-radius: 1em;
+        transition: all 1s;
+    }
+}
+
+.level-9,
+.level-10,
+.level-11,
+.level-12 {
+    background: repeating-linear-gradient(
+        to bottom,
+        rgb(0, 0, 0),
+        rgb(0, 0, 0) 2px,
+        lighten(rgb(0, 0, 0), 3%) 2px,
+        lighten(rgb(5, 5, 5), 3%) 4px
+    );
+    canvas {
+        border-radius: 1em;
+        border: 2px solid white;
+        -webkit-box-shadow: 0px 0px 10px 5px rgba(146, 253, 239, 0.2);
+        box-shadow: 0px 0px 10px 5px rgba(146, 253, 239, 0.2);
+    }
+    .pageHeader {
+        span {
+            font-family: Orbitron;
+            color: white;
+        }
+    }
+}
+
+.level-12 {
+    .pageHeader {
+        position: relative;
+    }
+    span {
+        transition: all 0.5s;
+        background: rgb(0, 42, 255);
+        background: linear-gradient(
+            0deg,
+            rgba(0, 42, 255, 1) 0%,
+            rgb(142, 160, 252) 40%,
+            rgba(255, 255, 255, 1) 45%,
+            rgba(255, 255, 255, 1) 20%,
+            rgb(241, 156, 28) 65%,
+            rgb(250, 162, 10) 85%,
+            rgba(247, 158, 0, 1) 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 2px 5px 10px #83ecfa3b;
+        background-size: 80%;
+        &:nth-child(10) {
+            &:after {
+                top: 40px;
+
+                border: 5px solid white;
+                position: absolute;
+                // height: 30px;
+                // width: 30px;
+                content: "";
+                border-radius: 1em;
+            }
+        }
     }
 }

@@ -35,7 +35,7 @@ const levelNine = {
     // Set up the audio
     p.audio = { ...p.audio, playerShot: "laserPew" };
 
-    // Render and update styles of the lives and score att he top of the screen
+    // Render and update styles of the lives and score at the top of the screen
     livesAndScore.update();
 
     // This causes a delay to allow the level to set up and allow aliens to spawn
@@ -45,6 +45,11 @@ const levelNine = {
       callback: () => {
         p.gameState.canAdvanceLevel = true;
       },
+    });
+
+    // Trigger css changes in react
+    p.updateReactState({
+      ...p,
     });
 
     // Add the player animations and start them off.

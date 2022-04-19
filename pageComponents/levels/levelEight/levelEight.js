@@ -35,7 +35,7 @@ const levelEight = {
     // Set up the audio
     p.audio = { ...p.audio, playerShot: "shortPlayerShot8" };
 
-    // Render and update styles of the lives and score att he top of the screen
+    // Render and update styles of the lives and score at the top of the screen
     p.textState.playerData.styles = {
       ...p.textState.playerData.styles,
       color: "rgb(255,255,255)",
@@ -55,10 +55,15 @@ const levelEight = {
     // Render and update styles of the lives and score at the top of the screen
     livesAndScore.update();
 
+    // Trigger css changes in react
+    p.updateReactState({
+      ...p,
+    });
+
     // This causes a delay to allow the level to set up and allow aliens to spawn
     p.gameState.canAdvanceLevel = false;
     p.game.time.addEvent({
-      delay: 5000,
+      delay: 18000,
       callback: () => {
         p.gameState.canAdvanceLevel = true;
       },

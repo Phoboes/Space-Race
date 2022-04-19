@@ -226,7 +226,7 @@ const enemy = {
     p.game.time.addEvent({
       delay: 12000,
       callback: () => {
-        enemy.spawnRandom(utils.random(-50, 800), 700);
+        enemy.spawnRandom(utils.random(-50, 800), 650);
       },
       repeat: utils.random(1, 4),
     });

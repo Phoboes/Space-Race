@@ -46,8 +46,28 @@ const index = (props) => {
     }
   }, [browserDetected]);
 
-  const content = game === null ? <p>Loading...</p> : null;
-
+  const phaserCanvas =
+    game === null ? (
+      <>
+        <p className={styles.loader}>
+          <span>Loading</span>
+          <span className={styles.elipses}>...</span>
+        </p>
+      </>
+    ) : (
+      <h1 className={`${styles.pageHeader}`}>
+        <span>S</span>
+        <span>p</span>
+        <span>a</span>
+        <span>c</span>
+        <span>e</span>
+        <span> </span>
+        <span>R</span>
+        <span>a</span>
+        <span>c</span>
+        <span>e</span>
+      </h1>
+    );
   if (gameState === null) {
     setGameState(p);
   }
@@ -60,13 +80,9 @@ const index = (props) => {
       id="container"
     >
       {/* This element needs to exist to force css fonts to load before Phaser, which then allows Phaser to use them from the get-go. */}
+      {phaserCanvas}
       <span className={styles.textLoader2p} />
-      <span className={styles.orbit} />
-
-      {content}
-      <div className={styles.textWrapper}>
-        {/* <span>Score: {gameState.playerState.score}</span> */}
-      </div>
+      <span className={styles.textLoaderOrbitron} />
     </div>
   );
 };

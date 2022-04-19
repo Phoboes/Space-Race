@@ -99,7 +99,7 @@ const enemy = {
 
     enemy.create.seeker({
       x: utils.random(50, 750),
-      y: 800,
+      y: 650,
     });
 
     p.game.time.addEvent({
@@ -107,7 +107,7 @@ const enemy = {
       callback: () => {
         enemy.create.seeker({
           x: utils.random(50, 750),
-          y: 800,
+          y: 650,
         });
       },
       repeat: 2,
@@ -118,7 +118,7 @@ const enemy = {
       callback: () => {
         enemy.create.shooter({
           x: utils.random(50, 750),
-          y: 800,
+          y: 650,
         });
       },
       repeat: 2,

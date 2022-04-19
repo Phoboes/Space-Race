@@ -44,7 +44,7 @@ const enemy = {
 
       // Fire seeker missiles
       const timer = p.game.time.addEvent({
-        delay: 4500,
+        delay: 4500 * p.alienState.fireRate,
         callback: () => {
           // Get the current x/y, not the x/y provided when the parent was created
           const currentXY = missileLauncher.getCenter();
@@ -115,10 +115,10 @@ const enemy = {
       shooter.body.allowGravity = false;
       shooter.setSize(40, 40, true);
 
-      // Fires a bullet on spawn then every 5 seconds after
+      // Fires a bullet on spawn then every 5 seconds after * a decreasing multiplier to shoot faster as the level goes
       bullets.alien.create.shooterBullet(shooter);
       const timer = p.game.time.addEvent({
-        delay: 5000,
+        delay: 5000 * p.alienState.fireRate,
         callback: () => {
           // Prevents firing from its previous position after destruction or if the game is over
           if (shooter.active && p.playerState.alive) {
@@ -163,10 +163,10 @@ const enemy = {
       // Makes the hitbox a little more accurate
       shotgunner.body.setSize(40, 40, true);
 
-      // Fires a bullet on spawn then every 5 seconds after
+      // Fires a bullet on spawn then every 5 seconds after * a decreasing multiplier to shoot faster as the level goes
       bullets.alien.create.shotgunBullets(shotgunner);
       const timer = p.game.time.addEvent({
-        delay: 5000,
+        delay: 5000 * p.alienState.fireRate,
         callback: () => {
           // Prevents firing from its previous position after destruction or if the game is over
           if (shotgunner.active) {
@@ -189,21 +189,21 @@ const enemy = {
 
     // Top spawn
     p.game.time.addEvent({
-      delay: 8000,
+      delay: 8000 * p.alienState.fireRate,
       callback: () => {
         // Create a random enemy from the list out of bounds top of map
         enemy.spawnRandom(utils.random(-50, 850), -50);
       },
-      repeat: utils.random(1, 4),
+      repeat: -1,
     });
 
     // Left spawn
     p.game.time.addEvent({
-      delay: 6000,
+      delay: 6000 * p.alienState.fireRate,
       callback: () => {
         enemy.spawnRandom(-50, utils.random(-50, 850));
       },
-      repeat: utils.random(1, 4),
+      repeat: -1,
     });
 
     // Right spawn
@@ -212,20 +212,35 @@ const enemy = {
     enemy.create.missileShip({ x: 850, y: utils.random(-50, 850) });
 
     p.game.time.addEvent({
-      delay: 9000,
+      delay: 9000 * p.alienState.fireRate,
       callback: () => {
         enemy.spawnRandom(850, utils.random(-50, 850));
       },
-      repeat: utils.random(1, 4),
+      repeat: -1,
     });
 
     // BOTTOM spawn
     p.game.time.addEvent({
-      delay: 7000,
+      delay: 7000 * p.alienState.fireRate,
       callback: () => {
-        enemy.spawnRandom(utils.random(-50, 850), 650);
+        enemy.spawnRandom(utils.random(-50, 850), 700);
       },
-      repeat: utils.random(1, 4),
+      repeat: -1,
+    });
+
+    // Every 10 seconds decrease the multiplier that spawns aliens by 0.1 making them spawn progressively faster during the round
+    const spawnTimer = p.game.time.addEvent({
+      delay: 10000,
+
+      callback: () => {
+        if (p.alienState.spawnRate > 0) {
+          p.alienState.spawnRate -= 0.1;
+          p.alienState.fireRate += 0.1;
+        } else {
+          spawnTimer.destroy();
+        }
+      },
+      repeat: -1,
     });
   },
 

@@ -35,7 +35,7 @@ const levelFour = {
     // after level 5 the way the player faces matters, as it turns it will always be 90 degrees off without this line
     p.player.angle = 270;
 
-    // Render and update styles of the lives and score att he top of the screen
+    // Render and update styles of the lives and score at the top of the screen
     livesAndScore.update();
 
     // This causes a delay to allow the level to set up and allow aliens to spawn

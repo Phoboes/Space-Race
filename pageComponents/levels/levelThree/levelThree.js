@@ -28,7 +28,7 @@ const levelThree = {
     // Modifies the collision handler for large asteroids
     collision.enable();
 
-    // Render and update styles of the lives and score att he top of the screen
+    // Render and update styles of the lives and score at the top of the screen
     livesAndScore.update();
 
     // This causes a delay to allow the level to set up and allow aliens to spawn

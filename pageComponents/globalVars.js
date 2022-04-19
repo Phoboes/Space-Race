@@ -17,7 +17,7 @@ export const setInitialState = () => {
       alive: true,
       score: 0,
       velocity: 200,
-      lives: 5,
+      lives: 500,
       fireRate: 800,
       canFire: true,
       godMode: false,
@@ -31,6 +31,8 @@ export const setInitialState = () => {
     },
     alienState: {
       collisionHandler: null,
+      spawnRate: 1,
+      fireRate: 1,
     },
     bulletState: {
       createCallback: null,

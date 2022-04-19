@@ -6,8 +6,6 @@ import livesAndScore from "../../render/livesAndScore";
 
 const levelEleven = {
   init: () => {
-    // game.add.image(0, 0, "levelNineBackground").setOrigin(0, 0);
-
     // -------------------------------------
     // Reset the player for new collisions
     // -------------------------------------
@@ -37,19 +35,18 @@ const levelEleven = {
     // Render and update styles of the lives and score at the top of the screen
     livesAndScore.update();
 
+    // Trigger css changes in react
+    p.updateReactState({
+      ...p,
+    });
+
     // This causes a delay to allow the level to set up and allow aliens to spawn
     p.gameState.canAdvanceLevel = false;
-    p.game.time.addEvent({
-      delay: 30000,
-      callback: () => {
-        p.gameState.canAdvanceLevel = true;
-      },
-    });
 
     // Add the player animations and start them off.
     p.playerAnimation = p.game.anims.create({
-      key: "levelNineShipAnimation",
-      frames: p.game.anims.generateFrameNumbers("levelNineShip", {
+      key: "levelTwelveShipAnimated",
+      frames: p.game.anims.generateFrameNumbers("levelTwelveShip", {
         start: 1,
         end: 2,
       }),

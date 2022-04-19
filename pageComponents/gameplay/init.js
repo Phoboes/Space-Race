@@ -11,6 +11,7 @@ import levelEight from "../levels/levelEight/levelEight";
 import levelNine from "../levels/levelNine/levelNine";
 import levelTen from "../levels/levelTen/levelTen";
 import levelEleven from "../levels/levelEleven/levelEleven";
+import levelTwelve from "../levels/levelTwelve/levelTwelve";
 
 export default function init(game) {
   if (p.gameState.level === 1) {
@@ -36,7 +37,7 @@ export default function init(game) {
   } else if (p.gameState.level === 11) {
     levelEleven.init();
   } else if (p.gameState.level === 12) {
-    // levelTen.init(game);
+    levelTwelve.init(game);
     return null;
   }
 }

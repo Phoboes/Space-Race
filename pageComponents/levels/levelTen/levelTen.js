@@ -35,12 +35,11 @@ const levelTen = {
     // Set up the audio
     p.audio = { ...p.audio, playerShot: "laserPew" };
 
-    // Render and update styles of the lives and score att he top of the screen
+    // Render and update styles of the lives and score at the top of the screen
     livesAndScore.update();
 
     // This causes a delay to allow the level to set up and allow aliens to spawn
     p.gameState.canAdvanceLevel = false;
-    // todo: 5000, reset this once done testing
     p.game.time.addEvent({
       delay: 30000,
       callback: () => {

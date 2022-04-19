@@ -25,15 +25,6 @@ const collision = {
       null,
       p.game
     );
-
-    // Listen for collisions between the player and enemy bullets
-    p.game.physics.add.overlap(
-      p.enemies.bullets,
-      p.player,
-      collision.player.shooterBulletCollisionHandler,
-      null,
-      p.game
-    );
   },
   player: {
     // -------------------------------------------------------
@@ -133,18 +124,15 @@ const collision = {
         collision.explosion.sprite.setVisible(false);
       }
 
-      // If the animation hasn't been created, create it; prevents duplicate creations
-      if (collision.explosion.animation === null) {
-        collision.explosion.animation = p.game.anims.create({
-          key: "nineExplosion",
-          frames: p.game.anims.generateFrameNumbers("levelNineKaboom", {
-            start: 0,
-            end: 15,
-          }),
-          frameRate: 25,
-          repeat: 0,
-        });
-      }
+      collision.explosion.animation = p.game.anims.create({
+        key: "nineExplosion",
+        frames: p.game.anims.generateFrameNumbers("levelNineKaboom", {
+          start: 0,
+          end: 15,
+        }),
+        frameRate: 25,
+        repeat: 0,
+      });
 
       //  Place the explosion, play the animation, hide it again.
       collision.explosion.sprite.setPosition(x, y);

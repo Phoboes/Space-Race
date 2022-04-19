@@ -25,7 +25,8 @@ export default function update() {
       if (
         p.aliens.getLength() === 0 &&
         !p.gameState.levelPending &&
-        p.gameState.canAdvanceLevel
+        p.gameState.canAdvanceLevel &&
+        p.gameState.level < 12
       ) {
         // todo: update ships here -- maybe
         p.gameState.canAdvanceLevel = false;

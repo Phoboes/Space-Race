@@ -53,7 +53,7 @@ const levelSeven = {
       playerShot: "pew",
     };
 
-    // Render and update styles of the lives and score att he top of the screen
+    // Render and update styles of the lives and score at the top of the screen
     p.textState.playerData.styles = {
       ...p.textState.playerData.styles,
       color: "rgb(255,255,0)",
@@ -67,6 +67,11 @@ const levelSeven = {
     };
 
     livesAndScore.update();
+
+    // Trigger css changes in react
+    p.updateReactState({
+      ...p,
+    });
 
     // This causes a delay to allow the level to set up and allow aliens to spawn
     p.gameState.canAdvanceLevel = false;
