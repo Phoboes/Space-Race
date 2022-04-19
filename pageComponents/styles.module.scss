@@ -195,6 +195,7 @@
 }
 
 .level-8 {
+    transition: all 1s;
     background: rgb(39, 0, 69);
     background: radial-gradient(circle, rgba(39, 0, 69, 1) 0%, rgba(0, 0, 0, 1) 100%);
     .pageHeader {
