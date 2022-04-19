@@ -65,6 +65,15 @@ const bullets = {
     bullet.setVelocity(vx, vy);
     // Adjust the bullet's graphic to the player's angle
     bullet.angle = p.player.angle;
+
+    // This offsets the bullet from the shooter's body slightly so it doesn't fire straight from the middle of its body
+    Phaser.Math.RotateAroundDistance(
+      bullet,
+      x,
+      y,
+      bullet.angle * Phaser.Math.DEG_TO_RAD,
+      30
+    );
   },
 
   //   The 'kill' method called when the bullet hits a worldbound or an enemy; disables it and puts it back up for the bullet pool to use

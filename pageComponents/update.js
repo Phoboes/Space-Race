@@ -60,6 +60,14 @@ export default function update() {
             })
             .setOrigin(0.5);
           p.gameState.stageText = endText;
+          p.gameState.canAdvanceLevel = false;
+          // Prevent the game immediately resetting if the player is holding space
+          p.game.time.addEvent({
+            delay: 1000,
+            callback: () => {
+              p.gameState.canAdvanceLevel = true;
+            },
+          });
           // Freeze all animations
           p.game.physics.pause();
           p.game.anims.pauseAll();

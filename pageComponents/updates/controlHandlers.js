@@ -36,7 +36,7 @@ const controlsHandler = {
     } else if (
       p.gameState.cursorKeys.space._justDown &&
       p.playerState.lives === 0 &&
-      p.canAdvanceLevel
+      p.gameState.canAdvanceLevel
     ) {
       // If the spacebar is hit and the player is dead:
       // -- Create a blank initial game state
