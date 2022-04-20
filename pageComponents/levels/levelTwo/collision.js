@@ -43,12 +43,12 @@ const collision = {
     create: (target) => {
       const { x, y } = target;
       // Create the explosion group
-      collision.explosion.sprite = p.game.physics.add.sprite({
+      const explosionSprite = p.game.physics.add.sprite({
         x: -100,
         y: -100,
       });
       // And hide it offscreen until needed
-      collision.explosion.sprite.setVisible(false);
+      explosionSprite.setVisible(false);
       // Give it an animation
       collision.explosion.animation = p.game.anims.create({
         key: "kaboom",
@@ -61,14 +61,15 @@ const collision = {
       });
 
       //  Place the explosion, play the animation, hide it again.
-      collision.explosion.sprite.setPosition(x, y);
-      collision.explosion.sprite.setVisible(true);
-      collision.explosion.sprite.play("kaboom");
+      explosionSprite.setPosition(x, y);
+      explosionSprite.setVisible(true);
+      explosionSprite.play("kaboom");
       //   Once the animation finishes, remove it from the scene
-      collision.explosion.sprite.on("animationcomplete", () => {
-        collision.explosion.sprite.setVisible(false);
+      explosionSprite.on("animationcomplete", () => {
+        explosionSprite.setVisible(false);
+        explosionSprite.destroy();
       });
-      collision.explosion.sprite.body.allowGravity = false;
+      explosionSprite.body.allowGravity = false;
     },
     sprite: null,
     animation: null,
