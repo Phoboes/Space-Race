@@ -91,10 +91,20 @@ const collision = {
       p.game.time.addEvent({
         delay: 200,
         callback: () => {
-          firstChildAsteroid.setVisible(true);
-          secondChildAsteroid.setVisible(true);
-          firstChildAsteroid.play("levelSixAsteroidSmallSpin");
-          secondChildAsteroid.play("levelSixAsteroidSmallSpin");
+
+          // Sometimes the children are hit and killed in the milliseconds before 
+          if( firstChildAsteroid.scene !== undefined){
+            console.log(firstChildAsteroid)
+            firstChildAsteroid.setVisible(true);
+            firstChildAsteroid.play("levelSixAsteroidSmallSpin");
+          }
+
+          if(secondChildAsteroid.scene !== undefined ){
+            secondChildAsteroid.setVisible(true);
+            secondChildAsteroid.play("levelSixAsteroidSmallSpin");
+  
+          }
+          
         },
       });
     }
