@@ -81,8 +81,8 @@ const index = (props) => {
     >
       {/* This element needs to exist to force css fonts to load before Phaser, which then allows Phaser to use them from the get-go. */}
       {phaserCanvas}
-      <span className={styles.textLoader2p} />
-      <span className={styles.textLoaderOrbitron} />
+      <span className={`${styles.textLoader2p} ${styles.textLoader}`} />
+      <span className={`${styles.textLoaderOrbitron} ${styles.textLoader}`} />
     </div>
   );
 };

@@ -53,7 +53,6 @@ const collision = {
     // Get the alien's velocity *before* removing it from the scene
     const velocity = alien.body.velocity;
     bullet.body.gameObject.disableBody(true, true);
-    console.log(alien);
     alien.destroy();
 
     // If it's a large asteroid, generate some fragments
@@ -92,9 +91,8 @@ const collision = {
         delay: 200,
         callback: () => {
 
-          // Sometimes the children are hit and killed in the milliseconds before 
+          // Sometimes the children are hit and killed in the milliseconds before -- this prevents an animation error that freezes the game 
           if( firstChildAsteroid.scene !== undefined){
-            console.log(firstChildAsteroid)
             firstChildAsteroid.setVisible(true);
             firstChildAsteroid.play("levelSixAsteroidSmallSpin");
           }
@@ -137,18 +135,16 @@ const collision = {
 
     create: (target) => {
       const { x, y } = target;
-      // If the explosion group hasn't been created for this level, do so
-      if (collision.explosion.sprite === null) {
-        collision.explosion.sprite = p.game.physics.add.sprite({
+      // Create the explosion group
+        const explosionSprite = p.game.physics.add.sprite({
           x: -100,
           y: -100,
         });
         // And hide it offscreen until needed
-        collision.explosion.sprite.setVisible(false);
-      }
+        explosionSprite.setVisible(false);
+      
 
-      // If the animation hasn't been created, create it; prevents duplicate creations
-      if (collision.explosion.animation === null) {
+      // Create the explosion animation
         collision.explosion.animation = p.game.anims.create({
           key: "levelSixKaboom",
           frames: p.game.anims.generateFrameNumbers("levelSixKaboom", {
@@ -158,17 +154,17 @@ const collision = {
           frameRate: 25,
           repeat: 0,
         });
-      }
 
       //  Place the explosion, play the animation, hide it again.
-      collision.explosion.sprite.setPosition(x, y);
-      collision.explosion.sprite.setVisible(true);
-      collision.explosion.sprite.play("levelSixKaboom");
+      explosionSprite.setPosition(x, y);
+      explosionSprite.setVisible(true);
+      explosionSprite.play("levelSixKaboom");
       //   Once the animation finishes, remove it from the scene
-      collision.explosion.sprite.on("animationcomplete", () => {
-        collision.explosion.sprite.setVisible(false);
+      explosionSprite.on("animationcomplete", () => {
+        explosionSprite.setVisible(false);
+        explosionSprite.destroy();
       });
-      collision.explosion.sprite.body.allowGravity = false;
+      explosionSprite.body.allowGravity = false;
     },
     sprite: null,
     animation: null,

@@ -47,7 +47,7 @@ const collision = {
 
     create: (target) => {
       const { x, y } = target;
-      // If the explosion group hasn't been created for this level, do so
+      // Create the explosion group
       collision.explosion.sprite = p.game.physics.add.sprite({
         x: -100,
         y: -100,

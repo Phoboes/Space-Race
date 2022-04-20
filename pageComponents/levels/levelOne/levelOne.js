@@ -17,7 +17,7 @@ const levelOne = {
     camera.setBackgroundColor("rgba(150,150,150,1)");
 
     // Set initial text
-    p.gameState.stageText = stageText.levels.one.startText();
+    p.textState.stageCompleteText = stageText.levels.one.startText();
     //  Add the player to the game
     p.player = p.game.physics.add.sprite(400, 500, "ship");
     // and prevent it falling through the world
@@ -28,7 +28,6 @@ const levelOne = {
     enemies.create();
     bullets.create();
     collisions.enable();
-    console.log(p);
 
     // Keyboard detect
     p.gameState.cursorKeys = p.game.input.keyboard.addKeys(

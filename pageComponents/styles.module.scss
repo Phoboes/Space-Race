@@ -27,8 +27,22 @@
         color: black;
     }
 
+    .loader {
+        margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+    }
+
     .textLoaderOrbitron {
         font-family: Orbitron;
+    }
+
+    .textLoader {
+        position: absolute;
+        height: 0px;
+        width: 0px;
     }
 
     @keyframes loader {
@@ -64,7 +78,7 @@
     }
 
     .pageHeader {
-        overflow: none;
+        cursor: default;
 
         span {
             opacity: 0;
@@ -187,7 +201,8 @@
     }
 
     canvas {
-        border: 3px solid yellow;
+        transition: all 1s;
+        border: 7px dashed yellow;
     }
     .textWrapper {
         color: darkgrey;
@@ -206,7 +221,7 @@
         }
     }
     canvas {
-        border: 0px solid transparent;
+        border: 1px solid rgba(255,255,255,0.3);
         border-radius: 1em;
         transition: all 1s;
     }

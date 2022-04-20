@@ -114,17 +114,16 @@ const collision = {
 
     create: (target) => {
       const { x, y } = target;
-      // If the explosion group hasn't been created for this level, do so
-      if (collision.explosion.sprite === null) {
-        collision.explosion.sprite = p.game.physics.add.sprite({
+      // Create the explosion group
+        const collisionExplosion = p.game.physics.add.sprite({
           x: -100,
           y: -100,
         });
         // And hide it offscreen until needed
-        collision.explosion.sprite.setVisible(false);
-      }
+        collisionExplosion.setVisible(false);
+      
 
-      collision.explosion.animation = p.game.anims.create({
+      const explosionAnimation = p.game.anims.create({
         key: "nineExplosion",
         frames: p.game.anims.generateFrameNumbers("levelNineKaboom", {
           start: 0,
@@ -134,15 +133,18 @@ const collision = {
         repeat: 0,
       });
 
+      collision.explosion.animation = explosionAnimation;
+
       //  Place the explosion, play the animation, hide it again.
-      collision.explosion.sprite.setPosition(x, y);
-      collision.explosion.sprite.setVisible(true);
-      collision.explosion.sprite.play("nineExplosion");
+      collisionExplosion.setPosition(x, y);
+      collisionExplosion.setVisible(true);
+      collisionExplosion.play("nineExplosion");
       //   Once the animation finishes, remove it from the scene
-      collision.explosion.sprite.on("animationcomplete", () => {
-        collision.explosion.sprite.setVisible(false);
+      collisionExplosion.on("animationcomplete", () => {
+        explosionAnimation.setVisible(false);
+        explosionAnimation.destroy();
       });
-      collision.explosion.sprite.body.allowGravity = false;
+      collisionExplosion.body.allowGravity = false;
     },
     sprite: null,
     animation: null,

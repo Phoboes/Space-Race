@@ -28,12 +28,20 @@ export default function update() {
         p.gameState.canAdvanceLevel &&
         p.gameState.level < 12
       ) {
-        // todo: update ships here -- maybe
         p.gameState.canAdvanceLevel = false;
-        p.gameState.stageText = textHandler(p.gameState.level);
+        p.textState.stageCompleteText = textHandler(p.gameState.level);
+        // Pause before allowing the player to advance
         p.game.time.addEvent({
           delay: 1000,
           callback: () => {
+            p.textState.gameOverText = p.game.add
+              .text(400, p.gameState.level < 8 ? 300 : 400, "(Hit space continue)", {
+                ...p.textState.levelText.styles,
+                align: "center",
+                fontSize: "2em",
+                fontWeight: "bold",
+              })
+              .setOrigin(0.5);
             p.gameState.levelPending = true;
             p.gameState.canAdvanceLevel = true;
             p.gameState.level++;
@@ -59,12 +67,20 @@ export default function update() {
               fontWeight: "bold",
             })
             .setOrigin(0.5);
-          p.gameState.stageText = endText;
+          p.textState.stageCompleteText = endText;
           p.gameState.canAdvanceLevel = false;
           // Prevent the game immediately resetting if the player is holding space
           p.game.time.addEvent({
             delay: 1000,
             callback: () => {
+              p.textState.gameOverText = p.game.add
+              .text(400, 350, "Hit space to restart", {
+                ...p.textState.levelText.styles,
+                align: "center",
+                fontSize: "2em",
+                fontWeight: "bold",
+              })
+              .setOrigin(0.5);
               p.gameState.canAdvanceLevel = true;
             },
           });
