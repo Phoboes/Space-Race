@@ -23,7 +23,7 @@
     // Used to get fonts into the DOM for phaser to access immediately rather than fetching
     .textLoader2p,
     .loader {
-        font-family: Press_Start_2P;
+        font-family: Press_Start_2P, Arial, Helvetica, sans-serif;
         color: black;
     }
 
@@ -36,7 +36,7 @@
     }
 
     .textLoaderOrbitron {
-        font-family: Orbitron;
+        font-family: Orbitron, Arial, Helvetica, sans-serif;
     }
 
     .textLoader {
