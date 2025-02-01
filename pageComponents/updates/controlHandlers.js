@@ -11,9 +11,13 @@ const controlsHandler = {
       !p.gameState.levelPending
     ) {
       // Destroy any level text that may remain
-      if (p.gameState.stageText && p.gameState.canAdvanceLevel) {
-        p.gameState.stageText.destroy();
-        p.gameState.stageText = null;
+      if (p.textState.stageCompleteText && p.gameState.canAdvanceLevel) {
+        p.textState.stageCompleteText.destroy();
+        p.textState.stageCompleteText = null;
+        if(p.textState.gameOverText){
+          p.textState.gameOverText.destroy();
+          p.textState.gameOverText = null;
+        }
       }
 
       // Used to throttle shots from the player. Wait x then allow firing again.
@@ -26,9 +30,14 @@ const controlsHandler = {
       p.gameState.cursorKeys.space._justDown &&
       p.gameState.levelPending
     ) {
-      if (p.gameState.stageText) {
-        p.gameState.stageText.destroy();
-        p.gameState.stageText = null;
+      if (p.textState.stageCompleteText) {
+        p.textState.stageCompleteText.destroy();
+        p.textState.stageCompleteText = null;
+
+        if(p.textState.gameOverText){
+          p.textState.gameOverText.destroy();
+          p.textState.gameOverText = null;
+        }
       }
       p.gameState.levelPending = false;
       initLevel(p.game);

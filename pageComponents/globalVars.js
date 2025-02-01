@@ -7,7 +7,6 @@ export const setInitialState = () => {
     bullets: null,
     gameState: {
       level: 1,
-      stageText: null,
       levelPending: false,
       canAdvanceLevel: true,
       cursorKeys: null,
@@ -28,6 +27,8 @@ export const setInitialState = () => {
     textState: {
       levelText: null,
       playerData: null,
+      stageCompleteText: null,
+      gameOverText: null,
     },
     alienState: {
       collisionHandler: null,

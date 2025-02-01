@@ -30,7 +30,7 @@ const stageText = {
           .text(
             screenCenterX,
             160,
-            "Level Complete. \n\n\n Now try left and right. \n\n\n(Fire to advance)",
+            "Level Complete. \n\n\n Now try left and right.",
             p.textState.levelText.styles
           )
           .setOrigin(0.5);
@@ -42,7 +42,7 @@ const stageText = {
           .text(
             screenCenterX,
             160,
-            "Level Complete.\n\n\nThey're breaking up!\n\n\n(Fire to advance)",
+            "Level Complete.\n\n\nThey're breaking up!",
             p.textState.levelText.styles
           )
           .setOrigin(0.5);
@@ -54,7 +54,7 @@ const stageText = {
           .text(
             screenCenterX,
             160,
-            "Level Complete.\n\n\nCleared for take off!\n\nVertical movement unlocked.\n\n\n(Fire to advance)",
+            "Level Complete.\n\n\nCleared for take off!\n\nVertical movement unlocked.",
             p.textState.levelText.styles
           )
           .setOrigin(0.5);
@@ -66,7 +66,7 @@ const stageText = {
           .text(
             screenCenterX,
             160,
-            "Level Complete.\n\n\nWatch your six!\n\nRotation enabled\n\n\n(Fire to advance)",
+            "Level Complete.\n\n\nWatch your six!\n\nRotation enabled",
             p.textState.levelText.styles
           )
           .setOrigin(0.5);
@@ -78,7 +78,7 @@ const stageText = {
           .text(
             screenCenterX,
             160,
-            "Level Complete.\n\n\nIt's dark out here...\n\nDiagonal movement enabled.\n\n\n(Fire to advance)",
+            "Level Complete.\n\n\nIt's dark out here...\n\nDiagonal movement enabled.",
             p.textState.levelText.styles
           )
           .setOrigin(0.5);
@@ -90,7 +90,7 @@ const stageText = {
           .text(
             screenCenterX,
             160,
-            "Level Complete.\n\n\nIncoming Blockade!\n\n\n(Fire to advance)",
+            "Level Complete.\n\n\nIncoming Blockade!",
             p.textState.levelText.styles
           )
           .setOrigin(0.5);
@@ -102,7 +102,7 @@ const stageText = {
           .text(
             screenCenterX,
             160,
-            "Level Complete.\n\n\nSeekers incoming!\n\n\n(Fire to advance)",
+            "Level Complete.\n\n\nSeekers incoming!",
             p.textState.levelText.styles
           )
           .setOrigin(0.5);
@@ -114,7 +114,7 @@ const stageText = {
           .text(
             screenCenterX,
             240,
-            "Level Complete.\n\n\nThey're shooting back now?\nThat's not fair.\n\n\n(Fire to advance)",
+            "Level Complete.\n\n\nThey're shooting back now?\nThat's not fair.",
             p.textState.levelText.styles
           )
           .setOrigin(0.5);
@@ -126,7 +126,7 @@ const stageText = {
           .text(
             screenCenterX,
             240,
-            "Level Complete.\n\n\nHeatseekers incoming!\n\n\n(Fire to advance)",
+            "Level Complete.\n\n\nHeatseekers incoming!",
             p.textState.levelText.styles
           )
           .setOrigin(0.5);
@@ -138,7 +138,7 @@ const stageText = {
           .text(
             screenCenterX,
             240,
-            "Level Complete.\n\n\nScattershots incoming!\n\n\n(Fire to advance)",
+            "Level Complete.\n\n\nScattershots incoming!",
             p.textState.levelText.styles
           )
           .setOrigin(0.5);
@@ -150,7 +150,7 @@ const stageText = {
           .text(
             screenCenterX,
             220,
-            "Level Complete.\n\n\nI don't think this one ends...\n\n\n(Fire to advance)",
+            "Level Complete.\n\n\nI don't think this one ends...",
             p.textState.levelText.styles
           )
           .setOrigin(0.5);

@@ -53,7 +53,6 @@ const collision = {
     // Get the alien's velocity *before* removing it from the scene
     const velocity = alien.body.velocity;
     bullet.body.gameObject.disableBody(true, true);
-    console.log(alien);
     alien.destroy();
 
     // If it's a large asteroid, generate some fragments
@@ -91,10 +90,16 @@ const collision = {
       p.game.time.addEvent({
         delay: 200,
         callback: () => {
-          firstChildAsteroid.setVisible(true);
-          secondChildAsteroid.setVisible(true);
-          firstChildAsteroid.play("levelSixAsteroidSmallSpin");
-          secondChildAsteroid.play("levelSixAsteroidSmallSpin");
+          // Sometimes the children are hit and killed in the milliseconds before -- this prevents an animation error that freezes the game
+          if (firstChildAsteroid.scene !== undefined) {
+            firstChildAsteroid.setVisible(true);
+            firstChildAsteroid.play("levelSixAsteroidSmallSpin");
+          }
+
+          if (secondChildAsteroid.scene !== undefined) {
+            secondChildAsteroid.setVisible(true);
+            secondChildAsteroid.play("levelSixAsteroidSmallSpin");
+          }
         },
       });
     }

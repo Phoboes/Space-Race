@@ -126,7 +126,7 @@ const collision = {
             start: 0,
             end: 3,
           }),
-          frameRate: 20,
+          frameRate: 16,
           repeat: 0,
         });
       }

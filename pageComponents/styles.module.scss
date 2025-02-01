@@ -42,12 +42,26 @@
     // Used to get fonts into the DOM for phaser to access immediately rather than fetching
     .textLoader2p,
     .loader {
-        font-family: Press_Start_2P;
+        font-family: Press_Start_2P, Arial, Helvetica, sans-serif;
         color: black;
     }
 
+    .loader {
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
     .textLoaderOrbitron {
-        font-family: Orbitron;
+        font-family: Orbitron, Arial, Helvetica, sans-serif;
+    }
+
+    .textLoader {
+        position: absolute;
+        height: 0px;
+        width: 0px;
     }
 
     @keyframes loader {
@@ -83,6 +97,7 @@
     }
 
     .pageHeader {
+        cursor: default;
         span {
             opacity: 0;
             font-size: 2em;
@@ -205,7 +220,8 @@
 
     canvas {
         transition: all 1s;
-        border: 3px solid yellow;
+
+        border: 7px dashed yellow;
     }
     .textWrapper {
         color: darkgrey;
@@ -249,7 +265,7 @@
     }
     canvas {
         transition: all 1s;
-        border: 0px solid transparent;
+        border: 1px solid rgba(255, 255, 255, 0.3);
         border-radius: 1em;
         z-index: 100;
         position: relative;
@@ -344,6 +360,7 @@
             rgba(247, 158, 0, 1) 100%
         );
         animation: fadeTextGradient 1s ease forwards;
+
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         text-shadow: 2px 5px 10px #83ecfa3b;

@@ -50,7 +50,6 @@ const collision = {
       // Create a new sprite without storing it in the collision object
       const explosionSprite = p.game.add.sprite(x, y, "kaboom");
       explosionSprite.setVisible(true);
-
       // If the animation hasn't been created, create it
       if (!p.game.anims.exists("kaboom")) {
         p.game.anims.create({
