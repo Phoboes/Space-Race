@@ -134,7 +134,6 @@ const collision = {
       explosion.on("animationcomplete", () => {
         explosion.destroy();
       });
-      // console.log(explosion);
     },
     getExplosionType: (asteroidId, size) => {
       // The ID is generated randomly when the alien is spawned -- it's the frame on which the sprite is frozen and determines the asteroid colour and is used to determine the explosion colour.

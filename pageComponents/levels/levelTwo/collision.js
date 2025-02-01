@@ -35,43 +35,35 @@ const collision = {
     collision.explosion.create(player);
   },
   explosion: {
-    // todo: Maybe make this global
     // -------------------------------------------------------
     // Create an explosion model and replay it on request
     // -------------------------------------------------------
 
     create: (target) => {
       const { x, y } = target;
-      // Create the explosion group
-      collision.explosion.sprite = p.game.physics.add.sprite({
-        x: -100,
-        y: -100,
-      });
-      // And hide it offscreen until needed
-      collision.explosion.sprite.setVisible(false);
-      // Give it an animation
-      collision.explosion.animation = p.game.anims.create({
-        key: "kaboom",
-        frames: p.game.anims.generateFrameNumbers("kaboom", {
-          start: 0,
-          end: 15,
-        }),
-        frameRate: 25,
-        repeat: 0,
-      });
+      // Create a new sprite without storing it in the collision object
+      const explosionSprite = p.game.add.sprite(x, y, "kaboom");
+      explosionSprite.setVisible(true);
 
-      //  Place the explosion, play the animation, hide it again.
-      collision.explosion.sprite.setPosition(x, y);
-      collision.explosion.sprite.setVisible(true);
-      collision.explosion.sprite.play("kaboom");
-      //   Once the animation finishes, remove it from the scene
-      collision.explosion.sprite.on("animationcomplete", () => {
-        collision.explosion.sprite.setVisible(false);
+      // If the animation hasn't been created, create it
+      if (!p.game.anims.exists("kaboom")) {
+        p.game.anims.create({
+          key: "kaboom",
+          frames: p.game.anims.generateFrameNumbers("kaboom", {
+            start: 0,
+            end: 3,
+          }),
+          frameRate: 16,
+          repeat: 0,
+        });
+      }
+
+      // Play the animation and destroy the sprite when done
+      explosionSprite.play("kaboom");
+      explosionSprite.on("animationcomplete", () => {
+        explosionSprite.destroy();
       });
-      collision.explosion.sprite.body.allowGravity = false;
     },
-    sprite: null,
-    animation: null,
   },
 };
 

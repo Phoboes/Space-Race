@@ -171,7 +171,7 @@ const enemy = {
     });
 
     p.game.time.addEvent({
-      delay: 12000,
+      delay: 10000,
       callback: () => {
         enemy.create.shooter({
           x: -50,

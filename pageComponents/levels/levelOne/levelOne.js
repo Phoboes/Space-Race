@@ -9,11 +9,8 @@ import utils from "../../utilityFunctions";
 const levelOne = {
   init: (game) => {
     p.game = game;
-    //   Set the background of the game to white
+    //   Set the background of the game to grey
     const camera = p.game.cameras.cameras[0];
-    // camera.setBackgroundColor("rgba(255,255,255,1)");
-    // Late night friendly:
-
     camera.setBackgroundColor("rgba(150,150,150,1)");
 
     // Set initial text
@@ -28,7 +25,6 @@ const levelOne = {
     enemies.create();
     bullets.create();
     collisions.enable();
-    console.log(p);
 
     // Keyboard detect
     p.gameState.cursorKeys = p.game.input.keyboard.addKeys(

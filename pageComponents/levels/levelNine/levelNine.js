@@ -59,7 +59,7 @@ const levelNine = {
         start: 1,
         end: 2,
       }),
-      frameRate: 15,
+      frameRate: 18,
       repeat: 0,
       yoyo: true,
     });

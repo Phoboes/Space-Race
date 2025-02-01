@@ -17,7 +17,7 @@ export const setInitialState = () => {
       alive: true,
       score: 0,
       velocity: 200,
-      lives: 3,
+      lives: 3000,
       fireRate: 800,
       canFire: true,
       godMode: false,

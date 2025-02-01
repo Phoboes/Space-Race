@@ -127,41 +127,29 @@ const collision = {
 
     create: (target) => {
       const { x, y } = target;
-      // If the explosion group hasn't been created for this level, do so
-      if (collision.explosion.sprite === null) {
-        collision.explosion.sprite = p.game.physics.add.sprite({
-          x: -100,
-          y: -100,
-        });
-        // And hide it offscreen until needed
-        collision.explosion.sprite.setVisible(false);
-      }
+      // Create a new sprite without storing it in the collision object
+      const explosionSprite = p.game.add.sprite(x, y, "levelSixKaboom");
+      explosionSprite.setVisible(true);
 
-      // If the animation hasn't been created, create it; prevents duplicate creations
-      if (collision.explosion.animation === null) {
-        collision.explosion.animation = p.game.anims.create({
+      // If the animation hasn't been created, create it
+      if (!p.game.anims.exists("levelSixKaboom")) {
+        p.game.anims.create({
           key: "levelSixKaboom",
           frames: p.game.anims.generateFrameNumbers("levelSixKaboom", {
             start: 0,
-            end: 15,
+            end: 3,
           }),
-          frameRate: 25,
+          frameRate: 16,
           repeat: 0,
         });
       }
 
-      //  Place the explosion, play the animation, hide it again.
-      collision.explosion.sprite.setPosition(x, y);
-      collision.explosion.sprite.setVisible(true);
-      collision.explosion.sprite.play("levelSixKaboom");
-      //   Once the animation finishes, remove it from the scene
-      collision.explosion.sprite.on("animationcomplete", () => {
-        collision.explosion.sprite.setVisible(false);
+      // Play the animation and destroy the sprite when done
+      explosionSprite.play("levelSixKaboom");
+      explosionSprite.on("animationcomplete", () => {
+        explosionSprite.destroy();
       });
-      collision.explosion.sprite.body.allowGravity = false;
     },
-    sprite: null,
-    animation: null,
   },
 };
 
