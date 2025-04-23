@@ -8,6 +8,16 @@
 ![Small Invader](./public/gameAssets/levels/Build/invaderSmall.gif)
 ![Large Invader](./public/gameAssets/levels/Build/invaderLarge.gif)
 ![Small Invader](./public/gameAssets/levels/Build/invaderSmall.gif)
+![Large Invader](./public/gameAssets/levels/Build/invaderLarge.gif)
+![Small Invader](./public/gameAssets/levels/Build/invaderSmall.gif)
+![Large Invader](./public/gameAssets/levels/Build/invaderLarge.gif)
+![Small Invader](./public/gameAssets/levels/Build/invaderSmall.gif)
+![Large Invader](./public/gameAssets/levels/Build/invaderLarge.gif)
+![Small Invader](./public/gameAssets/levels/Build/invaderSmall.gif)
+![Large Invader](./public/gameAssets/levels/Build/invaderLarge.gif)
+![Small Invader](./public/gameAssets/levels/Build/invaderSmall.gif)
+![Large Invader](./public/gameAssets/levels/Build/invaderLarge.gif)
+![Small Invader](./public/gameAssets/levels/Build/invaderSmall.gif)
 ## The Space Race
 
 The Space Race is a top down shooter that evolves as you play, paying homage to the old-school arcade games of the past. The game progresses from Pong-inspired ASCII graphics through Space Invaders and Asteroids, incorporating elements of Tetris/Pacman, before culminating in a 90's aesthetic reminiscent of Metal Slug.
@@ -36,3 +46,24 @@ Level Progression:
 - Level 10: Missile launchers are introduced along with the shooters and seekers. Missile launchers fire missiles that behave like slower seekers, and can overwhelm the screen if not controlled. To make things fairer, the player's firepower is doubled.
 - Level 11: The last enemy is added, a shotgunner. It behaves the same as a shooter, but fires a large spread of bullets.
 - Level 12: The final level. This never ends, enemies spawn progressively faster until the player dies. To give them a fighting chance, firepower is greatly upgraded into a shotgun of their own, along with a fancy new spaceship.
+
+![Large Invader](./public/gameAssets/levels/Build/invaderLarge.gif)
+![Small Invader](./public/gameAssets/levels/Build/invaderSmall.gif)
+![Large Invader](./public/gameAssets/levels/Build/invaderLarge.gif)
+![Small Invader](./public/gameAssets/levels/Build/invaderSmall.gif)
+![Large Invader](./public/gameAssets/levels/Build/invaderLarge.gif)
+![Small Invader](./public/gameAssets/levels/Build/invaderSmall.gif)
+![Large Invader](./public/gameAssets/levels/Build/invaderLarge.gif)
+![Small Invader](./public/gameAssets/levels/Build/invaderSmall.gif)
+![Large Invader](./public/gameAssets/levels/Build/invaderLarge.gif)
+![Small Invader](./public/gameAssets/levels/Build/invaderSmall.gif)
+![Large Invader](./public/gameAssets/levels/Build/invaderLarge.gif)
+![Small Invader](./public/gameAssets/levels/Build/invaderSmall.gif)
+![Large Invader](./public/gameAssets/levels/Build/invaderLarge.gif)
+![Small Invader](./public/gameAssets/levels/Build/invaderSmall.gif)
+![Large Invader](./public/gameAssets/levels/Build/invaderLarge.gif)
+![Small Invader](./public/gameAssets/levels/Build/invaderSmall.gif)
+![Large Invader](./public/gameAssets/levels/Build/invaderLarge.gif)
+![Small Invader](./public/gameAssets/levels/Build/invaderSmall.gif)
+![Large Invader](./public/gameAssets/levels/Build/invaderLarge.gif)
+![Small Invader](./public/gameAssets/levels/Build/invaderSmall.gif)
