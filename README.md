@@ -18,6 +18,7 @@
 ![Small Invader](./public/gameAssets/levels/Build/invaderSmall.gif)
 ![Large Invader](./public/gameAssets/levels/Build/invaderLarge.gif)
 ![Small Invader](./public/gameAssets/levels/Build/invaderSmall.gif)
+![Large Invader](./public/gameAssets/levels/Build/invaderLarge.gif)
 ## The Space Race
 
 The Space Race is a top down shooter that evolves as you play, paying homage to the old-school arcade games of the past. The game progresses from Pong-inspired ASCII graphics through Space Invaders and Asteroids, incorporating elements of Tetris/Pacman, before culminating in a 90's aesthetic reminiscent of Metal Slug.
@@ -69,3 +70,4 @@ ____
 ![Small Invader](./public/gameAssets/levels/Build/invaderSmall.gif)
 ![Large Invader](./public/gameAssets/levels/Build/invaderLarge.gif)
 ![Small Invader](./public/gameAssets/levels/Build/invaderSmall.gif)
+![Large Invader](./public/gameAssets/levels/Build/invaderLarge.gif)
