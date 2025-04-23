@@ -48,6 +48,8 @@ Level Progression:
 - Level 11: The last enemy is added, a shotgunner. It behaves the same as a shooter, but fires a large spread of bullets.
 - Level 12: The final level. This never ends, enemies spawn progressively faster until the player dies. To give them a fighting chance, firepower is greatly upgraded into a shotgun of their own, along with a fancy new spaceship.
 
+[Live link](https://space-race-eight.vercel.app/)
+
 ____
 
 ![Large Invader](./public/gameAssets/levels/Build/invaderLarge.gif)
