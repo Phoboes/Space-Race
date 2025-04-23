@@ -1,34 +1,38 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+![Large Invader](./public/gameAssets/levels/Build/invaderLarge.gif)
+![Small Invader](./public/gameAssets/levels/Build/invaderSmall.gif)
+![Large Invader](./public/gameAssets/levels/Build/invaderLarge.gif)
+![Small Invader](./public/gameAssets/levels/Build/invaderSmall.gif)
+![Large Invader](./public/gameAssets/levels/Build/invaderLarge.gif)
+![Small Invader](./public/gameAssets/levels/Build/invaderSmall.gif)
+![Large Invader](./public/gameAssets/levels/Build/invaderLarge.gif)
+![Small Invader](./public/gameAssets/levels/Build/invaderSmall.gif)
+![Large Invader](./public/gameAssets/levels/Build/invaderLarge.gif)
+![Small Invader](./public/gameAssets/levels/Build/invaderSmall.gif)
+## The Space Race
 
-## Getting Started
+The Space Race is a top down shooter that evolves as you play, paying homage to the old-school arcade games of the past. The game progresses from Pong-inspired ASCII graphics through Space Invaders and Asteroids, incorporating elements of Tetris/Pacman, before culminating in a 90's aesthetic reminiscent of Metal Slug.
 
-First, run the development server:
+This project began as a collaborative effort during my time at General Assembly, initially built with Ruby on Rails. I was responsible for the game design, asset creation, and sound design, while working with teammates who helped implement the initial Phaser-based gameplay mechanics. 
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+Since then, I've re-written basically the entire thing, in part to leverage React and game states for better css styling as the levels change, but additionally for simpler hosting, now that Heroku has gone paid.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The vast majority of the sprites and amimations are hand drawn by me, with the exception of maybe 1-2 explosions.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+The game won't work on mobile devices and takes approximately 5-10 minutes for a full playthrough (assuming survival!). Here's a quick preview:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+![Gameplay](./public/gameAssets/levels/Build/Srace.gif)
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Level Progression:
+- Lvl 1: Pong, no movement, shoot the alien
+- Lvl 2: Invaders/Pong, strafe left and right, shoot the aliens falling at you
+- Lvl 3: Space invaders, graphics are updated, aliens now split into children when they die
+- Level 4: Space invaders except with vertical movement introduced along with strafing, the player finally gets a ship
+- Level 5: Directional shooting introduced
+- Level 6: Asteroids! The player unlocks full movement (diagonal included rather than just x/y), the game becomes basically a carbon copy of Asteroids, with asteroids that split when killed etc
+- Level 7: Tetris/Pacman, new styles, super bright camp colours, asteroids are now multicoloured tetris blocks of various sizes and colours that split into new, multi-colourd block children.
+- Level 8: "Seekers" are introduced, little bug like aliens that chase after you in a kamikaze explosion, an old sorta NES style is introduced
+- Level 9: The page styles vaguely similarly to an old CRT monitor, the graphics are updated into mostly their final states, from here it's game changes. Gunners are introduced - ships that spawn shooting bullets where the player was when they spawned, along with the Seekers.
+- Level 10: Missile launchers are introduced along with the shooters and seekers. Missile launchers fire missiles that behave like slower seekers, and can overwhelm the screen if not controlled. To make things fairer, the player's firepower is doubled.
+- Level 11: The last enemy is added, a shotgunner. It behaves the same as a shooter, but fires a large spread of bullets.
+- Level 12: The final level. This never ends, enemies spawn progressively faster until the player dies. To give them a fighting chance, firepower is greatly upgraded into a shotgun of their own, along with a fancy new spaceship.

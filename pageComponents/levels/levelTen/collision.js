@@ -141,7 +141,7 @@ const collision = {
       }
 
       // Play the animation and destroy the sprite when done
-      explosionSprite.play("levelThreeKaboom");
+      explosionSprite.play("levelNineKaboom");
       explosionSprite.on("animationcomplete", () => {
         explosionSprite.destroy();
       });
